@@ -25,7 +25,7 @@ class EpisodeRepositoryImpl implements EpisodeRepository {
           requestOptions: httpResponse.response.requestOptions,
         ));
       }
-    } on DioException catch (e) {
+    } on DioException catch (e ) {
       return DataFailed(e);
     }
   }

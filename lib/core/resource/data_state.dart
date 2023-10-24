@@ -1,8 +1,8 @@
-import 'package:talker_dio_logger/dio_logs.dart';
+import 'package:dio/dio.dart';
 
 abstract class DataState<T> {
   final T? data;
-  final DioErrorLog? error;
+  final DioException? error;
 
   const DataState({this.data, this.error});
 }
@@ -12,5 +12,5 @@ class DataSuccess<T> extends DataState<T> {
 }
 
 class DataFailed<T> extends DataState<T> {
-  const DataFailed(DioErrorLog error) : super(error: error);
+  const DataFailed(DioException error) : super(error: error);
 }
