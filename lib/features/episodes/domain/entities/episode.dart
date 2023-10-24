@@ -1,7 +1,9 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
 class EpisodeEntity {
-  final String? name;
+  final String? title;
 
   const EpisodeEntity({
-    this.name,
+    this.title,
   });
 }

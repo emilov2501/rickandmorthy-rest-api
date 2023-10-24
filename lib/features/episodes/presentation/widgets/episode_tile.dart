@@ -13,7 +13,7 @@ class EpisodeWidget extends StatelessWidget {
           start: 14, end: 14, bottom: 14, top: 14),
       child: Row(
         children: [
-          Text('${episode.name}'),
+          Text('${episode.title}'),
         ],
       ),
     );

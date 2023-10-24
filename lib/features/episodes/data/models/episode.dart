@@ -7,7 +7,7 @@ part 'episode.freezed.dart';
 @freezed
 class EpisodeModel extends EpisodeEntity with _$EpisodeModel {
   const factory EpisodeModel({
-    required String name,
+    @JsonKey(name: 'name') required String title,
   }) = _EpisodeModel;
 
   factory EpisodeModel.fromJson(Map<String, dynamic> json) =>
