@@ -32,6 +32,7 @@ class RemoteEpisodesBloc
     if (dataState is DataFailed) {
       emit(state.copyWith(
         status: RemoteEpisodeStatus.failure,
+        message: '${dataState.error}',
       ));
     }
   }

@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mbank_testy/config/theme/app_themes.dart';
+import 'package:mbank_testy/features/episodes/presentation/bloc/episode/remote_episode_bloc.dart';
+import 'package:mbank_testy/features/episodes/presentation/pages/home/episodes.dart';
+import 'package:mbank_testy/injection_container.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -16,14 +21,18 @@ class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => sl<RemoteEpisodesBloc>(),
+        ),
+      ],
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        debugShowCheckedModeBanner: false,
+        theme: theme(),
+        home: const Episodes(),
       ),
-      home: const Scaffold(),
     );
   }
 }

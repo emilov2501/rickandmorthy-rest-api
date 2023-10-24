@@ -167,6 +167,7 @@ abstract class GetEpisodesEvent implements RemoteEpisodesEvent {
 /// @nodoc
 mixin _$RemoteEpisodesState {
   dynamic get status => throw _privateConstructorUsedError;
+  String get message => throw _privateConstructorUsedError;
   List<EpisodeEntity> get episodes => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -180,7 +181,7 @@ abstract class $RemoteEpisodesStateCopyWith<$Res> {
           RemoteEpisodesState value, $Res Function(RemoteEpisodesState) then) =
       _$RemoteEpisodesStateCopyWithImpl<$Res, RemoteEpisodesState>;
   @useResult
-  $Res call({dynamic status, List<EpisodeEntity> episodes});
+  $Res call({dynamic status, String message, List<EpisodeEntity> episodes});
 }
 
 /// @nodoc
@@ -197,6 +198,7 @@ class _$RemoteEpisodesStateCopyWithImpl<$Res, $Val extends RemoteEpisodesState>
   @override
   $Res call({
     Object? status = freezed,
+    Object? message = null,
     Object? episodes = null,
   }) {
     return _then(_value.copyWith(
@@ -204,6 +206,10 @@ class _$RemoteEpisodesStateCopyWithImpl<$Res, $Val extends RemoteEpisodesState>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as dynamic,
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
       episodes: null == episodes
           ? _value.episodes
           : episodes // ignore: cast_nullable_to_non_nullable
@@ -220,7 +226,7 @@ abstract class _$$RemoteEpisodesStateImplCopyWith<$Res>
       __$$RemoteEpisodesStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({dynamic status, List<EpisodeEntity> episodes});
+  $Res call({dynamic status, String message, List<EpisodeEntity> episodes});
 }
 
 /// @nodoc
@@ -235,10 +241,15 @@ class __$$RemoteEpisodesStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = freezed,
+    Object? message = null,
     Object? episodes = null,
   }) {
     return _then(_$RemoteEpisodesStateImpl(
       status: freezed == status ? _value.status! : status,
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
       episodes: null == episodes
           ? _value._episodes
           : episodes // ignore: cast_nullable_to_non_nullable
@@ -252,12 +263,16 @@ class __$$RemoteEpisodesStateImplCopyWithImpl<$Res>
 class _$RemoteEpisodesStateImpl implements _RemoteEpisodesState {
   const _$RemoteEpisodesStateImpl(
       {this.status = RemoteEpisodeStatus.initial,
+      this.message = '',
       final List<EpisodeEntity> episodes = const []})
       : _episodes = episodes;
 
   @override
   @JsonKey()
   final dynamic status;
+  @override
+  @JsonKey()
+  final String message;
   final List<EpisodeEntity> _episodes;
   @override
   @JsonKey()
@@ -269,7 +284,7 @@ class _$RemoteEpisodesStateImpl implements _RemoteEpisodesState {
 
   @override
   String toString() {
-    return 'RemoteEpisodesState(status: $status, episodes: $episodes)';
+    return 'RemoteEpisodesState(status: $status, message: $message, episodes: $episodes)';
   }
 
   @override
@@ -278,6 +293,7 @@ class _$RemoteEpisodesStateImpl implements _RemoteEpisodesState {
         (other.runtimeType == runtimeType &&
             other is _$RemoteEpisodesStateImpl &&
             const DeepCollectionEquality().equals(other.status, status) &&
+            (identical(other.message, message) || other.message == message) &&
             const DeepCollectionEquality().equals(other._episodes, _episodes));
   }
 
@@ -285,6 +301,7 @@ class _$RemoteEpisodesStateImpl implements _RemoteEpisodesState {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(status),
+      message,
       const DeepCollectionEquality().hash(_episodes));
 
   @JsonKey(ignore: true)
@@ -298,10 +315,13 @@ class _$RemoteEpisodesStateImpl implements _RemoteEpisodesState {
 abstract class _RemoteEpisodesState implements RemoteEpisodesState {
   const factory _RemoteEpisodesState(
       {final dynamic status,
+      final String message,
       final List<EpisodeEntity> episodes}) = _$RemoteEpisodesStateImpl;
 
   @override
   dynamic get status;
+  @override
+  String get message;
   @override
   List<EpisodeEntity> get episodes;
   @override

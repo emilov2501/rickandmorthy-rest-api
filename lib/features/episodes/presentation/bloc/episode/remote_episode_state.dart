@@ -16,6 +16,7 @@ enum RemoteEpisodeStatus {
 abstract class RemoteEpisodesState with _$RemoteEpisodesState {
   const factory RemoteEpisodesState({
     @Default(RemoteEpisodeStatus.initial) status,
+    @Default('') String message,
     @Default([]) List<EpisodeEntity> episodes,
   }) = _RemoteEpisodesState;
 }
