@@ -1,16 +1,25 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:mbank_testy/features/episodes/domain/entities/episode.dart';
 
-part 'episode.freezed.dart';
 part 'episode.g.dart';
 
-@freezed
-class EpisodeModel extends EpisodeEntity with _$EpisodeModel {
-  const factory EpisodeModel({
+@JsonSerializable()
+class EpisodeModel extends EpisodeEntity {
+  EpisodeModel({
     String? imageUrl,
     String? name,
-  }) = _EpisodeModel;
+  });
 
   factory EpisodeModel.fromJson(Map<String, dynamic> json) =>
       _$EpisodeModelFromJson(json);
+}
+
+@JsonSerializable()
+class EpisodeResponseDataModel {
+  List<EpisodeModel> results;
+
+  EpisodeResponseDataModel({required this.results});
+
+  factory EpisodeResponseDataModel.fromJson(Map<String, dynamic> json) =>
+      _$EpisodeResponseDataModelFromJson(json);
 }

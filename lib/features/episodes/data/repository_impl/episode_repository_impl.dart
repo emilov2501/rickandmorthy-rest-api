@@ -14,9 +14,8 @@ class EpisodeRepositoryImpl implements EpisodeRepository {
   Future<DataState<List<EpisodeModel>>> getEpisodes() async {
     try {
       final httpResponse = await _episodesApiService.getEpisodes();
-
       if (httpResponse.response.statusCode == HttpStatus.ok) {
-        return DataSuccess(httpResponse.data);
+        return DataSuccess(httpResponse.data.results);
       } else {
         return DataFailed(DioException(
           error: httpResponse.response.statusMessage,
@@ -25,7 +24,7 @@ class EpisodeRepositoryImpl implements EpisodeRepository {
           requestOptions: httpResponse.response.requestOptions,
         ));
       }
-    } on DioException catch (e ) {
+    } on DioException catch (e) {
       return DataFailed(e);
     }
   }

@@ -21,13 +21,13 @@ class _EpisodesApiService implements EpisodesApiService {
   String? baseUrl;
 
   @override
-  Future<HttpResponse<List<EpisodeModel>>> getEpisodes() async {
+  Future<HttpResponse<EpisodeResponseDataModel>> getEpisodes() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<List<dynamic>>(
-        _setStreamType<HttpResponse<List<EpisodeModel>>>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<EpisodeResponseDataModel>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -43,9 +43,7 @@ class _EpisodesApiService implements EpisodesApiService {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    var value = _result.data!
-        .map((dynamic i) => EpisodeModel.fromJson(i as Map<String, dynamic>))
-        .toList();
+    final value = EpisodeResponseDataModel.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
