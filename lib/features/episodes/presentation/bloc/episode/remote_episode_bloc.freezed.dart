@@ -284,6 +284,9 @@ mixin _$RemoteEpisodesState {
   dynamic get status => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
   int get page => throw _privateConstructorUsedError;
+  dynamic get totalPages => throw _privateConstructorUsedError;
+  dynamic get hasMore => throw _privateConstructorUsedError;
+  dynamic get total => throw _privateConstructorUsedError;
   List<EpisodeEntity> get episodes => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -298,7 +301,13 @@ abstract class $RemoteEpisodesStateCopyWith<$Res> {
       _$RemoteEpisodesStateCopyWithImpl<$Res, RemoteEpisodesState>;
   @useResult
   $Res call(
-      {dynamic status, String message, int page, List<EpisodeEntity> episodes});
+      {dynamic status,
+      String message,
+      int page,
+      dynamic totalPages,
+      dynamic hasMore,
+      dynamic total,
+      List<EpisodeEntity> episodes});
 }
 
 /// @nodoc
@@ -317,6 +326,9 @@ class _$RemoteEpisodesStateCopyWithImpl<$Res, $Val extends RemoteEpisodesState>
     Object? status = freezed,
     Object? message = null,
     Object? page = null,
+    Object? totalPages = freezed,
+    Object? hasMore = freezed,
+    Object? total = freezed,
     Object? episodes = null,
   }) {
     return _then(_value.copyWith(
@@ -332,6 +344,18 @@ class _$RemoteEpisodesStateCopyWithImpl<$Res, $Val extends RemoteEpisodesState>
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
               as int,
+      totalPages: freezed == totalPages
+          ? _value.totalPages
+          : totalPages // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      hasMore: freezed == hasMore
+          ? _value.hasMore
+          : hasMore // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      total: freezed == total
+          ? _value.total
+          : total // ignore: cast_nullable_to_non_nullable
+              as dynamic,
       episodes: null == episodes
           ? _value.episodes
           : episodes // ignore: cast_nullable_to_non_nullable
@@ -349,7 +373,13 @@ abstract class _$$RemoteEpisodesStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {dynamic status, String message, int page, List<EpisodeEntity> episodes});
+      {dynamic status,
+      String message,
+      int page,
+      dynamic totalPages,
+      dynamic hasMore,
+      dynamic total,
+      List<EpisodeEntity> episodes});
 }
 
 /// @nodoc
@@ -366,6 +396,9 @@ class __$$RemoteEpisodesStateImplCopyWithImpl<$Res>
     Object? status = freezed,
     Object? message = null,
     Object? page = null,
+    Object? totalPages = freezed,
+    Object? hasMore = freezed,
+    Object? total = freezed,
     Object? episodes = null,
   }) {
     return _then(_$RemoteEpisodesStateImpl(
@@ -378,6 +411,9 @@ class __$$RemoteEpisodesStateImplCopyWithImpl<$Res>
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
               as int,
+      totalPages: freezed == totalPages ? _value.totalPages! : totalPages,
+      hasMore: freezed == hasMore ? _value.hasMore! : hasMore,
+      total: freezed == total ? _value.total! : total,
       episodes: null == episodes
           ? _value._episodes
           : episodes // ignore: cast_nullable_to_non_nullable
@@ -393,6 +429,9 @@ class _$RemoteEpisodesStateImpl implements _RemoteEpisodesState {
       {this.status = RemoteEpisodeStatus.initial,
       this.message = '',
       this.page = 1,
+      this.totalPages = 0,
+      this.hasMore = false,
+      this.total = 0,
       final List<EpisodeEntity> episodes = const []})
       : _episodes = episodes;
 
@@ -405,6 +444,15 @@ class _$RemoteEpisodesStateImpl implements _RemoteEpisodesState {
   @override
   @JsonKey()
   final int page;
+  @override
+  @JsonKey()
+  final dynamic totalPages;
+  @override
+  @JsonKey()
+  final dynamic hasMore;
+  @override
+  @JsonKey()
+  final dynamic total;
   final List<EpisodeEntity> _episodes;
   @override
   @JsonKey()
@@ -416,7 +464,7 @@ class _$RemoteEpisodesStateImpl implements _RemoteEpisodesState {
 
   @override
   String toString() {
-    return 'RemoteEpisodesState(status: $status, message: $message, page: $page, episodes: $episodes)';
+    return 'RemoteEpisodesState(status: $status, message: $message, page: $page, totalPages: $totalPages, hasMore: $hasMore, total: $total, episodes: $episodes)';
   }
 
   @override
@@ -427,6 +475,10 @@ class _$RemoteEpisodesStateImpl implements _RemoteEpisodesState {
             const DeepCollectionEquality().equals(other.status, status) &&
             (identical(other.message, message) || other.message == message) &&
             (identical(other.page, page) || other.page == page) &&
+            const DeepCollectionEquality()
+                .equals(other.totalPages, totalPages) &&
+            const DeepCollectionEquality().equals(other.hasMore, hasMore) &&
+            const DeepCollectionEquality().equals(other.total, total) &&
             const DeepCollectionEquality().equals(other._episodes, _episodes));
   }
 
@@ -436,6 +488,9 @@ class _$RemoteEpisodesStateImpl implements _RemoteEpisodesState {
       const DeepCollectionEquality().hash(status),
       message,
       page,
+      const DeepCollectionEquality().hash(totalPages),
+      const DeepCollectionEquality().hash(hasMore),
+      const DeepCollectionEquality().hash(total),
       const DeepCollectionEquality().hash(_episodes));
 
   @JsonKey(ignore: true)
@@ -451,6 +506,9 @@ abstract class _RemoteEpisodesState implements RemoteEpisodesState {
       {final dynamic status,
       final String message,
       final int page,
+      final dynamic totalPages,
+      final dynamic hasMore,
+      final dynamic total,
       final List<EpisodeEntity> episodes}) = _$RemoteEpisodesStateImpl;
 
   @override
@@ -459,6 +517,12 @@ abstract class _RemoteEpisodesState implements RemoteEpisodesState {
   String get message;
   @override
   int get page;
+  @override
+  dynamic get totalPages;
+  @override
+  dynamic get hasMore;
+  @override
+  dynamic get total;
   @override
   List<EpisodeEntity> get episodes;
   @override

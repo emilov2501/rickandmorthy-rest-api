@@ -23,16 +23,21 @@ class RemoteEpisodesBloc
 
   void _onGetNextEpisodes(
       GetEpisodesNextEvent event, Emitter<RemoteEpisodesState> emit) async {
-    emit(state.copyWith(
-      status: RemoteEpisodeStatus.next,
-    ));
+    emit(state.copyWith(status: RemoteEpisodeStatus.next));
 
     final dataState = await _getEpisodeUseCase(params: state.page);
 
-    if (dataState is DataSuccess && dataState.data!.results.isNotEmpty) {
+    if (dataState is DataSuccess &&
+        dataState.data!.pagination.totalPages >= state.page) {
       emit(state.copyWith(
         episodes: state.episodes.followedBy(dataState.data!.results).toList(),
         page: state.page + 1,
+        hasMore: true,
+        status: RemoteEpisodeStatus.success,
+      ));
+    } else {
+      emit(state.copyWith(
+        hasMore: false,
         status: RemoteEpisodeStatus.success,
       ));
     }
@@ -40,6 +45,7 @@ class RemoteEpisodesBloc
     if (dataState is DataFailed) {
       emit(state.copyWith(
         status: RemoteEpisodeStatus.success,
+        hasMore: false,
         message: '${dataState.error}',
       ));
     }
@@ -55,6 +61,9 @@ class RemoteEpisodesBloc
     if (dataState is DataSuccess && dataState.data!.results.isNotEmpty) {
       emit(state.copyWith(
         episodes: dataState.data!.results,
+        hasMore: dataState.data!.pagination.totalPages >= state.page,
+        total: dataState.data!.pagination.total,
+        totalPages: dataState.data!.pagination.totalPages,
         status: RemoteEpisodeStatus.success,
       ));
     }

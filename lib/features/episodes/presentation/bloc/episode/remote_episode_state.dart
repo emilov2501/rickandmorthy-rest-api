@@ -20,6 +20,9 @@ abstract class RemoteEpisodesState with _$RemoteEpisodesState {
     @Default(RemoteEpisodeStatus.initial) status,
     @Default('') String message,
     @Default(1) int page,
+    @Default(0) totalPages,
+    @Default(false) hasMore,
+    @Default(0) total,
     @Default([]) List<EpisodeEntity> episodes,
   }) = _RemoteEpisodesState;
 }

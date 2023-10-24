@@ -17,7 +17,7 @@ class _EpisodesState extends State<Episodes> {
   void initState() {
     _scrollController = ScrollController();
     _scrollController.addListener(() {
-      if (_scrollController.position.pixels ==
+      if (_scrollController.offset ==
           _scrollController.position.maxScrollExtent) {
         context.read<RemoteEpisodesBloc>().add(GetEpisodesNextEvent());
       }
@@ -64,14 +64,37 @@ class _EpisodesState extends State<Episodes> {
                 Expanded(
                   child: ListView.builder(
                     controller: _scrollController,
-                    itemCount: episodes.length,
-                    itemBuilder: (context, index) => EpisodeWidget(
-                      episode: episodes[index],
-                    ),
+                    itemCount: episodes.length + 1,
+                    itemBuilder: (context, index) {
+                      if (index < episodes.length) {
+                        return EpisodeWidget(
+                          episode: episodes[index],
+                        );
+                      } else {
+                        if (state.hasMore) {
+                          return const Padding(
+                            padding: EdgeInsets.symmetric(vertical: 25),
+                            child: Center(
+                              child: CircularProgressIndicator.adaptive(),
+                            ),
+                          );
+                        } else {
+                          return const Padding(
+                            padding: EdgeInsets.symmetric(vertical: 25),
+                            child: Center(
+                              child: Text(
+                                'No more data to load',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                          );
+                        }
+                      }
+                    },
                   ),
                 ),
-                if (state.status == RemoteEpisodeStatus.next)
-                  const Text('Loading...')
               ],
             );
           }
