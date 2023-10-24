@@ -8,10 +8,11 @@ import 'package:mbank_testy/features/episodes/presentation/bloc/episode/remote_e
 
 GetIt sl = GetIt.instance;
 
-Future<void> initializeDependency() async {
+Future<void> initializeDependencies() async {
   // Dio
   sl.registerSingleton<Dio>(Dio());
 
+  // Dependencies
   sl.registerSingleton<EpisodesApiService>(EpisodesApiService(sl()));
 
   sl.registerSingleton<EpisodeRepository>(EpisodeRepositoryImpl(sl()));
@@ -20,5 +21,9 @@ Future<void> initializeDependency() async {
   sl.registerSingleton<GetEpisodeUseCase>(GetEpisodeUseCase(sl()));
 
   // Bloc
-  sl.registerFactory<RemoteEpisodesBloc>(() => RemoteEpisodesBloc(sl()));
+  sl.registerFactory<RemoteEpisodesBloc>(
+    () => RemoteEpisodesBloc(
+      sl(),
+    ),
+  );
 }

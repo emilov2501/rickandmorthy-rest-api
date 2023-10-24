@@ -8,12 +8,13 @@ import 'package:mbank_testy/features/episodes/domain/repository/episode_reposito
 class EpisodeRepositoryImpl implements EpisodeRepository {
   final EpisodesApiService _episodesApiService;
 
-  EpisodeRepositoryImpl(this._episodesApiService);
+  const EpisodeRepositoryImpl(this._episodesApiService);
 
   @override
   Future<DataState<List<EpisodeModel>>> getEpisodes() async {
     try {
       final httpResponse = await _episodesApiService.getEpisodes();
+
       if (httpResponse.response.statusCode == HttpStatus.ok) {
         return DataSuccess(httpResponse.data.results);
       } else {

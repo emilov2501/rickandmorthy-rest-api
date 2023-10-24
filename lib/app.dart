@@ -24,7 +24,7 @@ class _MyAppState extends State<MyApp> {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => sl<RemoteEpisodesBloc>(),
+          create: (context) => sl<RemoteEpisodesBloc>()..add(GetEpisodesEvent()),
         ),
       ],
       child: MaterialApp(

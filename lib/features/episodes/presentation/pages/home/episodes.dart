@@ -1,20 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mbank_testy/features/episodes/presentation/bloc/episode/remote_episode_bloc.dart';
+import 'package:mbank_testy/features/episodes/presentation/widgets/episode_tile.dart';
 
-class Episodes extends StatefulWidget {
+class Episodes extends StatelessWidget {
   const Episodes({super.key});
-
-  @override
-  State<Episodes> createState() => _EpisodesState();
-}
-
-class _EpisodesState extends State<Episodes> {
-  @override
-  void initState() {
-    context.read<RemoteEpisodesBloc>().add(GetEpisodesEvent());
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,17 +30,17 @@ class _EpisodesState extends State<Episodes> {
         }
 
         if (state.status == RemoteEpisodeStatus.failure) {
-          print(state.message);
           return const Center(
             child: Icon(Icons.refresh),
           );
         }
 
         if (state.status == RemoteEpisodeStatus.success) {
+          final episodes = state.episodes;
           return ListView.builder(
-            itemCount: state.episodes.length,
-            itemBuilder: (context, index) => ListTile(
-              title: Text('$index'),
+            itemCount: episodes.length,
+            itemBuilder: (context, index) => EpisodeWidget(
+              episode: episodes[index],
             ),
           );
         }

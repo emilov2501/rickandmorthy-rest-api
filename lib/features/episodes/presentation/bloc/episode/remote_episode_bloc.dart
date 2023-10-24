@@ -19,7 +19,10 @@ class RemoteEpisodesBloc
   }
 
   void _onGetEpisodes(
-      GetEpisodesEvent event, Emitter<RemoteEpisodesState> emit) async {
+    GetEpisodesEvent event,
+    Emitter<RemoteEpisodesState> emit,
+  ) async {
+    emit(state.copyWith(status: RemoteEpisodeStatus.loading));
     final dataState = await _getEpisodeUseCase();
 
     if (dataState is DataSuccess && dataState.data!.isNotEmpty) {
