@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mbank_testy/app.dart';
-import 'package:mbank_testy/locator.dart';
-import 'package:mbank_testy/talker.dart';
+import 'package:mbank_testy/injection_container.dart';
 
 void main() {
-  initTalker();
-  setupLocator();
-
+  initializeDependency();
   runApp(const MyApp());
 }
