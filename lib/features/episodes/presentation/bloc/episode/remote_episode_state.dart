@@ -17,6 +17,7 @@ abstract class RemoteEpisodesState with _$RemoteEpisodesState {
   const factory RemoteEpisodesState({
     @Default(RemoteEpisodeStatus.initial) status,
     @Default('') String message,
+    @Default(1) int page,
     @Default([]) List<EpisodeEntity> episodes,
   }) = _RemoteEpisodesState;
 }

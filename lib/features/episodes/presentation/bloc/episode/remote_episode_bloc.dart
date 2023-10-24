@@ -14,8 +14,31 @@ class RemoteEpisodesBloc
   final GetEpisodeUseCase _getEpisodeUseCase;
 
   RemoteEpisodesBloc(this._getEpisodeUseCase)
-      : super(const RemoteEpisodesState()) {
+      : super(const RemoteEpisodesState(
+          page: 2,
+        )) {
     on<GetEpisodesEvent>(_onGetEpisodes);
+    on<GetEpisodesNextEvent>(_onGetNextEpisodes);
+  }
+
+  void _onGetNextEpisodes(
+      GetEpisodesNextEvent event, Emitter<RemoteEpisodesState> emit) async {
+    final dataState = await _getEpisodeUseCase(params: state.page);
+
+    if (dataState is DataSuccess && dataState.data!.isNotEmpty) {
+      emit(state.copyWith(
+        episodes: state.episodes.followedBy(dataState.data!).toList(),
+        page: state.page + 1,
+        status: RemoteEpisodeStatus.success,
+      ));
+    }
+
+    if (dataState is DataFailed) {
+      emit(state.copyWith(
+        status: RemoteEpisodeStatus.success,
+        message: '${dataState.error}',
+      ));
+    }
   }
 
   void _onGetEpisodes(
