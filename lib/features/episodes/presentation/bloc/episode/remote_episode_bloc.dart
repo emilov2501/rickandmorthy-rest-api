@@ -23,11 +23,15 @@ class RemoteEpisodesBloc
 
   void _onGetNextEpisodes(
       GetEpisodesNextEvent event, Emitter<RemoteEpisodesState> emit) async {
+    emit(state.copyWith(
+      status: RemoteEpisodeStatus.next,
+    ));
+
     final dataState = await _getEpisodeUseCase(params: state.page);
 
-    if (dataState is DataSuccess && dataState.data!.isNotEmpty) {
+    if (dataState is DataSuccess && dataState.data!.results.isNotEmpty) {
       emit(state.copyWith(
-        episodes: state.episodes.followedBy(dataState.data!).toList(),
+        episodes: state.episodes.followedBy(dataState.data!.results).toList(),
         page: state.page + 1,
         status: RemoteEpisodeStatus.success,
       ));
@@ -48,9 +52,9 @@ class RemoteEpisodesBloc
     emit(state.copyWith(status: RemoteEpisodeStatus.loading));
     final dataState = await _getEpisodeUseCase();
 
-    if (dataState is DataSuccess && dataState.data!.isNotEmpty) {
+    if (dataState is DataSuccess && dataState.data!.results.isNotEmpty) {
       emit(state.copyWith(
-        episodes: dataState.data!,
+        episodes: dataState.data!.results,
         status: RemoteEpisodeStatus.success,
       ));
     }

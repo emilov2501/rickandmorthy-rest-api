@@ -3,10 +3,12 @@ part of 'remote_episode_bloc.dart';
 enum RemoteEpisodeStatus {
   initial,
   loading,
+  next,
   success,
   failure;
 
   bool get isInitial => this == RemoteEpisodeStatus.initial;
+  bool get isNext => this == RemoteEpisodeStatus.next;
   bool get isSuccess => this == RemoteEpisodeStatus.success;
   bool get isLoading => this == RemoteEpisodeStatus.loading;
   bool get isFailure => this == RemoteEpisodeStatus.failure;

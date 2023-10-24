@@ -155,35 +155,40 @@ abstract class _EpisodeModel implements EpisodeModel {
       throw _privateConstructorUsedError;
 }
 
-EpisodeResponseDataModel _$EpisodeResponseDataModelFromJson(
+EpisodePaginationModel _$EpisodePaginationModelFromJson(
     Map<String, dynamic> json) {
-  return _EpisodeResponseDataModel.fromJson(json);
+  return _EpisodePaginationModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$EpisodeResponseDataModel {
-  List<EpisodeModel> get results => throw _privateConstructorUsedError;
+mixin _$EpisodePaginationModel {
+  @JsonKey(name: 'count')
+  int get total => throw _privateConstructorUsedError;
+  @JsonKey(name: 'pages')
+  int get totalPages => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $EpisodeResponseDataModelCopyWith<EpisodeResponseDataModel> get copyWith =>
+  $EpisodePaginationModelCopyWith<EpisodePaginationModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $EpisodeResponseDataModelCopyWith<$Res> {
-  factory $EpisodeResponseDataModelCopyWith(EpisodeResponseDataModel value,
-          $Res Function(EpisodeResponseDataModel) then) =
-      _$EpisodeResponseDataModelCopyWithImpl<$Res, EpisodeResponseDataModel>;
+abstract class $EpisodePaginationModelCopyWith<$Res> {
+  factory $EpisodePaginationModelCopyWith(EpisodePaginationModel value,
+          $Res Function(EpisodePaginationModel) then) =
+      _$EpisodePaginationModelCopyWithImpl<$Res, EpisodePaginationModel>;
   @useResult
-  $Res call({List<EpisodeModel> results});
+  $Res call(
+      {@JsonKey(name: 'count') int total,
+      @JsonKey(name: 'pages') int totalPages});
 }
 
 /// @nodoc
-class _$EpisodeResponseDataModelCopyWithImpl<$Res,
-        $Val extends EpisodeResponseDataModel>
-    implements $EpisodeResponseDataModelCopyWith<$Res> {
-  _$EpisodeResponseDataModelCopyWithImpl(this._value, this._then);
+class _$EpisodePaginationModelCopyWithImpl<$Res,
+        $Val extends EpisodePaginationModel>
+    implements $EpisodePaginationModelCopyWith<$Res> {
+  _$EpisodePaginationModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -193,45 +198,238 @@ class _$EpisodeResponseDataModelCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? total = null,
+    Object? totalPages = null,
+  }) {
+    return _then(_value.copyWith(
+      total: null == total
+          ? _value.total
+          : total // ignore: cast_nullable_to_non_nullable
+              as int,
+      totalPages: null == totalPages
+          ? _value.totalPages
+          : totalPages // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$EpisodePaginationModelImplCopyWith<$Res>
+    implements $EpisodePaginationModelCopyWith<$Res> {
+  factory _$$EpisodePaginationModelImplCopyWith(
+          _$EpisodePaginationModelImpl value,
+          $Res Function(_$EpisodePaginationModelImpl) then) =
+      __$$EpisodePaginationModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'count') int total,
+      @JsonKey(name: 'pages') int totalPages});
+}
+
+/// @nodoc
+class __$$EpisodePaginationModelImplCopyWithImpl<$Res>
+    extends _$EpisodePaginationModelCopyWithImpl<$Res,
+        _$EpisodePaginationModelImpl>
+    implements _$$EpisodePaginationModelImplCopyWith<$Res> {
+  __$$EpisodePaginationModelImplCopyWithImpl(
+      _$EpisodePaginationModelImpl _value,
+      $Res Function(_$EpisodePaginationModelImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? total = null,
+    Object? totalPages = null,
+  }) {
+    return _then(_$EpisodePaginationModelImpl(
+      total: null == total
+          ? _value.total
+          : total // ignore: cast_nullable_to_non_nullable
+              as int,
+      totalPages: null == totalPages
+          ? _value.totalPages
+          : totalPages // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$EpisodePaginationModelImpl implements _EpisodePaginationModel {
+  const _$EpisodePaginationModelImpl(
+      {@JsonKey(name: 'count') required this.total,
+      @JsonKey(name: 'pages') required this.totalPages});
+
+  factory _$EpisodePaginationModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$EpisodePaginationModelImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'count')
+  final int total;
+  @override
+  @JsonKey(name: 'pages')
+  final int totalPages;
+
+  @override
+  String toString() {
+    return 'EpisodePaginationModel(total: $total, totalPages: $totalPages)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$EpisodePaginationModelImpl &&
+            (identical(other.total, total) || other.total == total) &&
+            (identical(other.totalPages, totalPages) ||
+                other.totalPages == totalPages));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, total, totalPages);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$EpisodePaginationModelImplCopyWith<_$EpisodePaginationModelImpl>
+      get copyWith => __$$EpisodePaginationModelImplCopyWithImpl<
+          _$EpisodePaginationModelImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$EpisodePaginationModelImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _EpisodePaginationModel implements EpisodePaginationModel {
+  const factory _EpisodePaginationModel(
+          {@JsonKey(name: 'count') required final int total,
+          @JsonKey(name: 'pages') required final int totalPages}) =
+      _$EpisodePaginationModelImpl;
+
+  factory _EpisodePaginationModel.fromJson(Map<String, dynamic> json) =
+      _$EpisodePaginationModelImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'count')
+  int get total;
+  @override
+  @JsonKey(name: 'pages')
+  int get totalPages;
+  @override
+  @JsonKey(ignore: true)
+  _$$EpisodePaginationModelImplCopyWith<_$EpisodePaginationModelImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+EpisodeBaseModel _$EpisodeBaseModelFromJson(Map<String, dynamic> json) {
+  return _EpisodeBaseModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$EpisodeBaseModel {
+  @JsonKey(name: 'info')
+  EpisodePaginationModel get pagination => throw _privateConstructorUsedError;
+  List<EpisodeModel> get results => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $EpisodeBaseModelCopyWith<EpisodeBaseModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $EpisodeBaseModelCopyWith<$Res> {
+  factory $EpisodeBaseModelCopyWith(
+          EpisodeBaseModel value, $Res Function(EpisodeBaseModel) then) =
+      _$EpisodeBaseModelCopyWithImpl<$Res, EpisodeBaseModel>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'info') EpisodePaginationModel pagination,
+      List<EpisodeModel> results});
+
+  $EpisodePaginationModelCopyWith<$Res> get pagination;
+}
+
+/// @nodoc
+class _$EpisodeBaseModelCopyWithImpl<$Res, $Val extends EpisodeBaseModel>
+    implements $EpisodeBaseModelCopyWith<$Res> {
+  _$EpisodeBaseModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? pagination = null,
     Object? results = null,
   }) {
     return _then(_value.copyWith(
+      pagination: null == pagination
+          ? _value.pagination
+          : pagination // ignore: cast_nullable_to_non_nullable
+              as EpisodePaginationModel,
       results: null == results
           ? _value.results
           : results // ignore: cast_nullable_to_non_nullable
               as List<EpisodeModel>,
     ) as $Val);
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $EpisodePaginationModelCopyWith<$Res> get pagination {
+    return $EpisodePaginationModelCopyWith<$Res>(_value.pagination, (value) {
+      return _then(_value.copyWith(pagination: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
-abstract class _$$EpisodeResponseDataModelImplCopyWith<$Res>
-    implements $EpisodeResponseDataModelCopyWith<$Res> {
-  factory _$$EpisodeResponseDataModelImplCopyWith(
-          _$EpisodeResponseDataModelImpl value,
-          $Res Function(_$EpisodeResponseDataModelImpl) then) =
-      __$$EpisodeResponseDataModelImplCopyWithImpl<$Res>;
+abstract class _$$EpisodeBaseModelImplCopyWith<$Res>
+    implements $EpisodeBaseModelCopyWith<$Res> {
+  factory _$$EpisodeBaseModelImplCopyWith(_$EpisodeBaseModelImpl value,
+          $Res Function(_$EpisodeBaseModelImpl) then) =
+      __$$EpisodeBaseModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<EpisodeModel> results});
+  $Res call(
+      {@JsonKey(name: 'info') EpisodePaginationModel pagination,
+      List<EpisodeModel> results});
+
+  @override
+  $EpisodePaginationModelCopyWith<$Res> get pagination;
 }
 
 /// @nodoc
-class __$$EpisodeResponseDataModelImplCopyWithImpl<$Res>
-    extends _$EpisodeResponseDataModelCopyWithImpl<$Res,
-        _$EpisodeResponseDataModelImpl>
-    implements _$$EpisodeResponseDataModelImplCopyWith<$Res> {
-  __$$EpisodeResponseDataModelImplCopyWithImpl(
-      _$EpisodeResponseDataModelImpl _value,
-      $Res Function(_$EpisodeResponseDataModelImpl) _then)
+class __$$EpisodeBaseModelImplCopyWithImpl<$Res>
+    extends _$EpisodeBaseModelCopyWithImpl<$Res, _$EpisodeBaseModelImpl>
+    implements _$$EpisodeBaseModelImplCopyWith<$Res> {
+  __$$EpisodeBaseModelImplCopyWithImpl(_$EpisodeBaseModelImpl _value,
+      $Res Function(_$EpisodeBaseModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? pagination = null,
     Object? results = null,
   }) {
-    return _then(_$EpisodeResponseDataModelImpl(
+    return _then(_$EpisodeBaseModelImpl(
+      pagination: null == pagination
+          ? _value.pagination
+          : pagination // ignore: cast_nullable_to_non_nullable
+              as EpisodePaginationModel,
       results: null == results
           ? _value._results
           : results // ignore: cast_nullable_to_non_nullable
@@ -242,13 +440,18 @@ class __$$EpisodeResponseDataModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$EpisodeResponseDataModelImpl implements _EpisodeResponseDataModel {
-  _$EpisodeResponseDataModelImpl({required final List<EpisodeModel> results})
+class _$EpisodeBaseModelImpl implements _EpisodeBaseModel {
+  const _$EpisodeBaseModelImpl(
+      {@JsonKey(name: 'info') required this.pagination,
+      required final List<EpisodeModel> results})
       : _results = results;
 
-  factory _$EpisodeResponseDataModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$EpisodeResponseDataModelImplFromJson(json);
+  factory _$EpisodeBaseModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$EpisodeBaseModelImplFromJson(json);
 
+  @override
+  @JsonKey(name: 'info')
+  final EpisodePaginationModel pagination;
   final List<EpisodeModel> _results;
   @override
   List<EpisodeModel> get results {
@@ -259,49 +462,54 @@ class _$EpisodeResponseDataModelImpl implements _EpisodeResponseDataModel {
 
   @override
   String toString() {
-    return 'EpisodeResponseDataModel(results: $results)';
+    return 'EpisodeBaseModel(pagination: $pagination, results: $results)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$EpisodeResponseDataModelImpl &&
+            other is _$EpisodeBaseModelImpl &&
+            (identical(other.pagination, pagination) ||
+                other.pagination == pagination) &&
             const DeepCollectionEquality().equals(other._results, _results));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_results));
+  int get hashCode => Object.hash(
+      runtimeType, pagination, const DeepCollectionEquality().hash(_results));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$EpisodeResponseDataModelImplCopyWith<_$EpisodeResponseDataModelImpl>
-      get copyWith => __$$EpisodeResponseDataModelImplCopyWithImpl<
-          _$EpisodeResponseDataModelImpl>(this, _$identity);
+  _$$EpisodeBaseModelImplCopyWith<_$EpisodeBaseModelImpl> get copyWith =>
+      __$$EpisodeBaseModelImplCopyWithImpl<_$EpisodeBaseModelImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$EpisodeResponseDataModelImplToJson(
+    return _$$EpisodeBaseModelImplToJson(
       this,
     );
   }
 }
 
-abstract class _EpisodeResponseDataModel implements EpisodeResponseDataModel {
-  factory _EpisodeResponseDataModel(
-          {required final List<EpisodeModel> results}) =
-      _$EpisodeResponseDataModelImpl;
+abstract class _EpisodeBaseModel implements EpisodeBaseModel {
+  const factory _EpisodeBaseModel(
+      {@JsonKey(name: 'info') required final EpisodePaginationModel pagination,
+      required final List<EpisodeModel> results}) = _$EpisodeBaseModelImpl;
 
-  factory _EpisodeResponseDataModel.fromJson(Map<String, dynamic> json) =
-      _$EpisodeResponseDataModelImpl.fromJson;
+  factory _EpisodeBaseModel.fromJson(Map<String, dynamic> json) =
+      _$EpisodeBaseModelImpl.fromJson;
 
+  @override
+  @JsonKey(name: 'info')
+  EpisodePaginationModel get pagination;
   @override
   List<EpisodeModel> get results;
   @override
   @JsonKey(ignore: true)
-  _$$EpisodeResponseDataModelImplCopyWith<_$EpisodeResponseDataModelImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$EpisodeBaseModelImplCopyWith<_$EpisodeBaseModelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

@@ -10,7 +10,7 @@ abstract class EpisodesApiService {
   factory EpisodesApiService(Dio dio) = _EpisodesApiService;
 
   @GET('/episode')
-  Future<HttpResponse<EpisodeResponseDataModel>> getEpisodes({
+  Future<HttpResponse<EpisodeBaseModel>> getEpisodes({
     @Query('page') int? page,
   });
 }

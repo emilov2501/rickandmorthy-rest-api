@@ -56,14 +56,23 @@ class _EpisodesState extends State<Episodes> {
             );
           }
 
-          if (state.status == RemoteEpisodeStatus.success) {
+          if (state.status == RemoteEpisodeStatus.success ||
+              state.status == RemoteEpisodeStatus.next) {
             final episodes = state.episodes;
-            return ListView.builder(
-              controller: _scrollController,
-              itemCount: episodes.length,
-              itemBuilder: (context, index) => EpisodeWidget(
-                episode: episodes[index],
-              ),
+            return Column(
+              children: [
+                Expanded(
+                  child: ListView.builder(
+                    controller: _scrollController,
+                    itemCount: episodes.length,
+                    itemBuilder: (context, index) => EpisodeWidget(
+                      episode: episodes[index],
+                    ),
+                  ),
+                ),
+                if (state.status == RemoteEpisodeStatus.next)
+                  const Text('Loading...')
+              ],
             );
           }
 

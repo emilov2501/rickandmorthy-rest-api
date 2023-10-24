@@ -11,12 +11,12 @@ class EpisodeRepositoryImpl implements EpisodeRepository {
   const EpisodeRepositoryImpl(this._episodesApiService);
 
   @override
-  Future<DataState<List<EpisodeModel>>> getEpisodes({int? page}) async {
+  Future<DataState<EpisodeBaseModel>> getEpisodes({int? page}) async {
     try {
       final httpResponse = await _episodesApiService.getEpisodes(page: page);
 
       if (httpResponse.response.statusCode == HttpStatus.ok) {
-        return DataSuccess(httpResponse.data.results);
+        return DataSuccess(httpResponse.data);
       } else {
         return DataFailed(DioException(
           error: httpResponse.response.statusMessage,
