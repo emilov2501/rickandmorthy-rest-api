@@ -9,29 +9,30 @@ class EpisodeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => onTap(episode),
+    return InkWell(
+      onTap: () async {
+        await onTap(episode);
+      },
       child: Container(
         padding: const EdgeInsetsDirectional.only(
-            start: 14, end: 14, bottom: 14, top: 14),
+            start: 14, end: 14, bottom: 25, top: 25),
         child: Wrap(
           crossAxisAlignment: WrapCrossAlignment.center,
           alignment: WrapAlignment.spaceBetween,
           children: [
+            const Icon(
+              Icons.keyboard_double_arrow_right,
+              color: Colors.white,
+              size: 20,
+            ),
             SizedBox(
-              width: MediaQuery.of(context).size.width - 100,
+              width: MediaQuery.of(context).size.width - 80,
               child: Text(
-                '${episode.title}',
-                maxLines: 1,
+                episode.title,
                 overflow: TextOverflow.ellipsis,
-                style: const TextStyle(fontSize: 18),
+                style: const TextStyle(fontSize: 12),
               ),
             ),
-            const Icon(
-              Icons.arrow_forward_ios,
-              color: Colors.black38,
-              size: 20,
-            )
           ],
         ),
       ),

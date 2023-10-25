@@ -49,19 +49,22 @@ class CharacterWidget extends StatelessWidget {
                   character.name,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  'Gender: ${character.gender.name.capitalize()}',
+                  style: Theme.of(context).textTheme.bodyMedium,
                 ),
                 const SizedBox(
                   height: 10,
                 ),
-                Text('Gender: ${character.gender.name.capitalize()}'),
-                const SizedBox(
-                  height: 5,
-                ),
-                Text('Status: ${character.status.name.capitalize()}')
+                Text(
+                  'Status: ${character.status.name.capitalize()}',
+                  style: Theme.of(context).textTheme.bodyMedium,
+                )
               ],
             ),
           )

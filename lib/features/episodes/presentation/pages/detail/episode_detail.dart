@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+// ignore: library_prefixes
+import 'package:get/instance_manager.dart' as GetRoute;
+import 'package:get/route_manager.dart';
+import 'package:mbank_testy/core/widgets/app_loader.dart';
 import 'package:mbank_testy/features/episodes/domain/entities/episode.dart';
 import 'package:mbank_testy/features/episodes/presentation/bloc/episode/remote_episode_bloc.dart';
+import 'package:mbank_testy/features/episodes/presentation/pages/detail/episode_cell.dart';
 
 class EpisodeDetail extends StatefulWidget {
   final EpisodeEntity? episode;
@@ -29,7 +34,16 @@ class _EpisodeDetailState extends State<EpisodeDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(widget.episode?.title ?? '')),
+      backgroundColor: Colors.white12,
+      appBar: AppBar(
+        title: Text(widget.episode?.title ?? ''),
+        leading: IconButton(
+          onPressed: () {
+            GetRoute.Get.back();
+          },
+          icon: const Icon(Icons.arrow_back),
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
         child: _buildColumn(),
@@ -42,9 +56,7 @@ class _EpisodeDetailState extends State<EpisodeDetail> {
       child: BlocBuilder<RemoteSingleEpisodeBloc, RemoteSingleEpisodeState>(
         builder: (context, state) {
           if (state.status.isLoading) {
-            return const Center(
-              child: CircularProgressIndicator.adaptive(),
-            );
+            return const AppLoader();
           }
 
           if (state.status.isFailure) {
@@ -55,53 +67,13 @@ class _EpisodeDetailState extends State<EpisodeDetail> {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding: const EdgeInsetsDirectional.only(
-                      top: 20, bottom: 20, end: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text(
-                        'Name:',
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.w600),
-                      ),
-                      const SizedBox(
-                        width: 25,
-                      ),
-                      Expanded(
-                        child: Text(
-                          state.episode?.title ?? '',
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 1,
-                          textAlign: TextAlign.right,
-                          style: const TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                Cell(
+                  label: 'Name',
+                  title: state.episode?.title,
                 ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.only(
-                      top: 20, bottom: 20, end: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text(
-                        'Episode:',
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.w600),
-                      ),
-                      Text(
-                        state.episode?.episode ?? '',
-                        style: const TextStyle(
-                          fontSize: 18,
-                        ),
-                      ),
-                    ],
-                  ),
+                Cell(
+                  label: 'Episode',
+                  title: state.episode?.episode,
                 ),
               ],
             );

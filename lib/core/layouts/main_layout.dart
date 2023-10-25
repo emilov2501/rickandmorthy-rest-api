@@ -29,18 +29,24 @@ class _MainLayoutState extends State<MainLayout> {
             currentIndex = value;
           });
         },
-        iconSize: 30,
-        showUnselectedLabels: false,
-        type: BottomNavigationBarType.fixed,
-        showSelectedLabels: false,
+        iconSize: 25,
+        selectedFontSize: 12,
+        unselectedFontSize: 10,
+        selectedIconTheme: const IconThemeData(
+          color: Colors.white,
+          size: 35
+        ),
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.white54,
+        backgroundColor: Colors.black12,
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.people_alt_outlined),
+            icon: Icon(Icons.list_sharp),
             label: 'Hero',
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.movie_filter_outlined,
+              Icons.local_movies_outlined,
             ),
             label: 'Episodes',
           )

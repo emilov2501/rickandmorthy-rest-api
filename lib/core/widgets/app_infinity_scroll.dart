@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mbank_testy/core/widgets/app_loader.dart';
 
 class AppInfinityScroll<T> extends StatefulWidget {
   final List<T> items;
@@ -52,11 +53,8 @@ class _AppInfinityScrollState<T> extends State<AppInfinityScroll<T>> {
         } else {
           if (widget.hasMore) {
             return const Padding(
-              padding: EdgeInsets.symmetric(vertical: 25),
-              child: Center(
-                child: CircularProgressIndicator.adaptive(),
-              ),
-            );
+                padding: EdgeInsets.symmetric(vertical: 25),
+                child: AppLoader());
           } else {
             return const Padding(
               padding: EdgeInsets.symmetric(vertical: 25),

@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:get/route_manager.dart' as GetRoute;
 import 'package:mbank_testy/core/widgets/app_failure.dart';
 import 'package:mbank_testy/core/widgets/app_infinity_scroll.dart';
 import 'package:mbank_testy/core/widgets/app_loader.dart';
 import 'package:mbank_testy/features/episodes/domain/entities/episode.dart';
 import 'package:mbank_testy/features/episodes/presentation/bloc/episodes/remote_episode_bloc.dart';
+import 'package:mbank_testy/features/episodes/presentation/pages/detail/episode_detail.dart';
 import 'package:mbank_testy/features/episodes/presentation/widgets/episode_tile.dart';
 
 class Episodes extends StatefulWidget {
@@ -84,7 +87,9 @@ class _EpisodesState extends State<Episodes> {
     );
   }
 
-  Future<Object?> _onEpisodePressed(
-          BuildContext context, EpisodeEntity episode) =>
-      Navigator.pushNamed(context, '/EpisodeDetail', arguments: episode);
+  _onEpisodePressed(BuildContext context, EpisodeEntity episode) =>
+      GetRoute.Get.to(
+        () => EpisodeDetail(episode: episode),
+        transition: GetRoute.Transition.zoom,
+      );
 }
