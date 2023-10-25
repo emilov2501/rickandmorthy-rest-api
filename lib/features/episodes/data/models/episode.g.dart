@@ -8,11 +8,15 @@ part of 'episode.dart';
 
 _$EpisodeModelImpl _$$EpisodeModelImplFromJson(Map<String, dynamic> json) =>
     _$EpisodeModelImpl(
+      id: json['id'] as int,
+      episode: json['episode'] as String,
       title: json['name'] as String,
     );
 
 Map<String, dynamic> _$$EpisodeModelImplToJson(_$EpisodeModelImpl instance) =>
     <String, dynamic>{
+      'id': instance.id,
+      'episode': instance.episode,
       'name': instance.title,
     };
 

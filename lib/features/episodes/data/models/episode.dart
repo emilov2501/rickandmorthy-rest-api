@@ -9,6 +9,8 @@ part 'episode.freezed.dart';
 @freezed
 class EpisodeModel extends EpisodeEntity with _$EpisodeModel {
   const factory EpisodeModel({
+    required int id,
+    required String episode,
     @JsonKey(name: 'name') required String title,
   }) = _EpisodeModel;
 
@@ -29,8 +31,7 @@ class EpisodePaginationModel extends EpisodePaginationEntity
 }
 
 @freezed
-class EpisodeBaseModel extends EpisodeBaseEntity
-    with _$EpisodeBaseModel {
+class EpisodeBaseModel extends EpisodeBaseEntity with _$EpisodeBaseModel {
   const factory EpisodeBaseModel({
     @JsonKey(name: 'info') required EpisodePaginationModel pagination,
     required List<EpisodeModel> results,

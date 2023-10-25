@@ -20,6 +20,8 @@ EpisodeModel _$EpisodeModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$EpisodeModel {
+  int get id => throw _privateConstructorUsedError;
+  String get episode => throw _privateConstructorUsedError;
   @JsonKey(name: 'name')
   String get title => throw _privateConstructorUsedError;
 
@@ -35,7 +37,7 @@ abstract class $EpisodeModelCopyWith<$Res> {
           EpisodeModel value, $Res Function(EpisodeModel) then) =
       _$EpisodeModelCopyWithImpl<$Res, EpisodeModel>;
   @useResult
-  $Res call({@JsonKey(name: 'name') String title});
+  $Res call({int id, String episode, @JsonKey(name: 'name') String title});
 }
 
 /// @nodoc
@@ -51,9 +53,19 @@ class _$EpisodeModelCopyWithImpl<$Res, $Val extends EpisodeModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
+    Object? episode = null,
     Object? title = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      episode: null == episode
+          ? _value.episode
+          : episode // ignore: cast_nullable_to_non_nullable
+              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -70,7 +82,7 @@ abstract class _$$EpisodeModelImplCopyWith<$Res>
       __$$EpisodeModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({@JsonKey(name: 'name') String title});
+  $Res call({int id, String episode, @JsonKey(name: 'name') String title});
 }
 
 /// @nodoc
@@ -84,9 +96,19 @@ class __$$EpisodeModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
+    Object? episode = null,
     Object? title = null,
   }) {
     return _then(_$EpisodeModelImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      episode: null == episode
+          ? _value.episode
+          : episode // ignore: cast_nullable_to_non_nullable
+              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -98,18 +120,25 @@ class __$$EpisodeModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$EpisodeModelImpl implements _EpisodeModel {
-  const _$EpisodeModelImpl({@JsonKey(name: 'name') required this.title});
+  const _$EpisodeModelImpl(
+      {required this.id,
+      required this.episode,
+      @JsonKey(name: 'name') required this.title});
 
   factory _$EpisodeModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$EpisodeModelImplFromJson(json);
 
+  @override
+  final int id;
+  @override
+  final String episode;
   @override
   @JsonKey(name: 'name')
   final String title;
 
   @override
   String toString() {
-    return 'EpisodeModel(title: $title)';
+    return 'EpisodeModel(id: $id, episode: $episode, title: $title)';
   }
 
   @override
@@ -117,12 +146,14 @@ class _$EpisodeModelImpl implements _EpisodeModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$EpisodeModelImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.episode, episode) || other.episode == episode) &&
             (identical(other.title, title) || other.title == title));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, title);
+  int get hashCode => Object.hash(runtimeType, id, episode, title);
 
   @JsonKey(ignore: true)
   @override
@@ -140,12 +171,17 @@ class _$EpisodeModelImpl implements _EpisodeModel {
 
 abstract class _EpisodeModel implements EpisodeModel {
   const factory _EpisodeModel(
-          {@JsonKey(name: 'name') required final String title}) =
-      _$EpisodeModelImpl;
+      {required final int id,
+      required final String episode,
+      @JsonKey(name: 'name') required final String title}) = _$EpisodeModelImpl;
 
   factory _EpisodeModel.fromJson(Map<String, dynamic> json) =
       _$EpisodeModelImpl.fromJson;
 
+  @override
+  int get id;
+  @override
+  String get episode;
   @override
   @JsonKey(name: 'name')
   String get title;
