@@ -23,21 +23,18 @@ class CharacterWidget extends StatelessWidget {
         top: 14,
       ),
       child: Wrap(
-        spacing: 10,
+        spacing: 20,
+        crossAxisAlignment: WrapCrossAlignment.center,
         children: [
-          SizedBox(
-            width: 100,
-            height: 100,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: CachedNetworkImage(
-                cacheManager: sl<CacheManager>(),
-                key: UniqueKey(),
-                imageUrl: character.image,
-                imageBuilder: _imageBuilder,
-                placeholder: _loader,
-                errorWidget: _error,
-              ),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: CachedNetworkImage(
+              cacheManager: sl<CacheManager>(),
+              key: UniqueKey(),
+              imageUrl: character.image,
+              imageBuilder: _imageBuilder,
+              placeholder: _loader,
+              errorWidget: _error,
             ),
           ),
           SizedBox(
@@ -59,7 +56,7 @@ class CharacterWidget extends StatelessWidget {
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
                 const SizedBox(
-                  height: 10,
+                  height: 20,
                 ),
                 Text(
                   'Status: ${character.status.name.capitalize()}',
@@ -78,9 +75,8 @@ class CharacterWidget extends StatelessWidget {
         height: 100,
         decoration: BoxDecoration(
           image: DecorationImage(
-            //image size fill
             image: imageProvider,
-            fit: BoxFit.fitWidth,
+            fit: BoxFit.cover,
           ),
         ),
       );

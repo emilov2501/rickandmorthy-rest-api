@@ -18,7 +18,7 @@ class Cell extends StatelessWidget {
         children: [
           Text(
             '$label:',
-            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+            style: Theme.of(context).textTheme.bodyMedium,
           ),
           const SizedBox(
             width: 25,
@@ -29,9 +29,7 @@ class Cell extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
               textAlign: TextAlign.right,
-              style: const TextStyle(
-                fontSize: 14,
-              ),
+              style: Theme.of(context).textTheme.bodyMedium,
             ),
           ),
         ],

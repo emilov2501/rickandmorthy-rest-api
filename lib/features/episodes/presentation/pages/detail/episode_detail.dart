@@ -34,7 +34,7 @@ class _EpisodeDetailState extends State<EpisodeDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white12,
+      backgroundColor: const Color(0xff212121),
       appBar: AppBar(
         title: Text(widget.episode?.title ?? ''),
         leading: IconButton(
@@ -44,27 +44,25 @@ class _EpisodeDetailState extends State<EpisodeDetail> {
           icon: const Icon(Icons.arrow_back),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
-        child: _buildColumn(),
-      ),
+      body: _buildColumn(),
     );
   }
 
   _buildColumn() {
-    return SafeArea(
-      child: BlocBuilder<RemoteSingleEpisodeBloc, RemoteSingleEpisodeState>(
-        builder: (context, state) {
-          if (state.status.isLoading) {
-            return const AppLoader();
-          }
+    return BlocBuilder<RemoteSingleEpisodeBloc, RemoteSingleEpisodeState>(
+      builder: (context, state) {
+        if (state.status.isLoading) {
+          return const AppLoader();
+        }
 
-          if (state.status.isFailure) {
-            return const Center(child: Text("Episode not found :("));
-          }
+        if (state.status.isFailure) {
+          return const Center(child: Text("Episode not found :("));
+        }
 
-          if (state.status.isSuccess) {
-            return Column(
+        if (state.status.isSuccess) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Cell(
@@ -76,12 +74,12 @@ class _EpisodeDetailState extends State<EpisodeDetail> {
                   title: state.episode?.episode,
                 ),
               ],
-            );
-          }
+            ),
+          );
+        }
 
-          return const SizedBox.shrink();
-        },
-      ),
+        return const SizedBox.shrink();
+      },
     );
   }
 }

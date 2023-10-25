@@ -3,21 +3,24 @@ import 'package:google_fonts/google_fonts.dart';
 
 ThemeData theme(context) {
   return ThemeData(
-    fontFamily: GoogleFonts.pressStart2p().fontFamily,
-    textTheme: const TextTheme(
-      bodyLarge: TextStyle(
-        color: Colors.white,
-        fontSize: 14,
-        fontWeight: FontWeight.w600,
+      fontFamily: GoogleFonts.pressStart2p().fontFamily,
+      textTheme: const TextTheme(
+        bodyLarge: TextStyle(
+          color: Colors.white,
+          fontSize: 16,
+          fontWeight: FontWeight.w600,
+          letterSpacing: 1
+        ),
+        bodyMedium: TextStyle(
+          color: Colors.white,
+          letterSpacing: 1,
+          fontSize: 10,
+        ),
       ),
-      bodyMedium: TextStyle(
-        color: Colors.white,
-        fontSize: 10,
-      ),
-    ),
-    scaffoldBackgroundColor: Colors.black12,
-    appBarTheme: appBarTheme(),
-  );
+      scaffoldBackgroundColor: const Color(0xff212121),
+      appBarTheme: appBarTheme(),
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          backgroundColor: Color(0xff212121)));
 }
 
 AppBarTheme appBarTheme() {
@@ -30,7 +33,7 @@ AppBarTheme appBarTheme() {
     ),
     titleTextStyle: GoogleFonts.pressStart2p(
       color: Colors.white,
-      fontSize: 18,
+      fontSize: 16,
     ),
   );
 }

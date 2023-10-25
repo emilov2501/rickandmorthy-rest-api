@@ -30,7 +30,7 @@ class EpisodeWidget extends StatelessWidget {
               child: Text(
                 episode.title,
                 overflow: TextOverflow.ellipsis,
-                style: const TextStyle(fontSize: 12),
+                style: Theme.of(context).textTheme.bodyMedium,
               ),
             ),
           ],

@@ -32,13 +32,9 @@ class _MainLayoutState extends State<MainLayout> {
         iconSize: 25,
         selectedFontSize: 12,
         unselectedFontSize: 10,
-        selectedIconTheme: const IconThemeData(
-          color: Colors.white,
-          size: 35
-        ),
+        selectedIconTheme: const IconThemeData(color: Colors.white, size: 35),
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.white54,
-        backgroundColor: Colors.black12,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.list_sharp),
