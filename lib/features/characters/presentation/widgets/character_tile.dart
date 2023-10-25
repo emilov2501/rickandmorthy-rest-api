@@ -1,11 +1,17 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:mbank_testy/core/util/string.dart';
 import 'package:mbank_testy/features/characters/domain/entities/character.dart';
+import 'package:mbank_testy/injection_container.dart';
 
 class CharacterWidget extends StatelessWidget {
   final CharacterEntity character;
 
-  const CharacterWidget({super.key, required this.character});
+  const CharacterWidget({
+    super.key,
+    required this.character,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +28,17 @@ class CharacterWidget extends StatelessWidget {
           SizedBox(
             width: 100,
             height: 100,
-            child: Image.network(character.image),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: CachedNetworkImage(
+                cacheManager: sl<CacheManager>(),
+                key: UniqueKey(),
+                imageUrl: character.image,
+                imageBuilder: _imageBuilder,
+                placeholder: _loader,
+                errorWidget: _error,
+              ),
+            ),
           ),
           SizedBox(
             width: MediaQuery.of(context).size.width - 148,
@@ -42,7 +58,7 @@ class CharacterWidget extends StatelessWidget {
                   height: 10,
                 ),
                 Text('Gender: ${character.gender.name.capitalize()}'),
-                 const SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
                 Text('Status: ${character.status.name.capitalize()}')
@@ -53,4 +69,20 @@ class CharacterWidget extends StatelessWidget {
       ),
     );
   }
+
+  Widget _imageBuilder(context, imageProvider) => Container(
+        width: 100,
+        height: 100,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            //image size fill
+            image: imageProvider,
+            fit: BoxFit.fitWidth,
+          ),
+        ),
+      );
+
+  Widget _error(context, url, error) => const Icon(Icons.error);
+
+  Widget _loader(context, url) => const CircularProgressIndicator.adaptive();
 }

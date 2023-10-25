@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mbank_testy/features/characters/data/data_source/remote/character_api_service.dart';
 import 'package:mbank_testy/features/characters/data/repository_impl/character_repository_impl.dart';
@@ -19,6 +20,13 @@ GetIt sl = GetIt.instance;
 Future<void> initializeDependencies() async {
   // Dio
   sl.registerSingleton<Dio>(Dio());
+  sl.registerFactory<CacheManager>(() => CacheManager(
+        Config(
+          'customCacheKey',
+          stalePeriod: const Duration(days: 15),
+          maxNrOfCacheObjects: 100,
+        ),
+      ));
 
   // Dependencies
   sl.registerSingleton<EpisodesApiService>(EpisodesApiService(sl()));

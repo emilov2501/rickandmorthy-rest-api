@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:mbank_testy/core/widgets/app_failure.dart';
 import 'package:mbank_testy/core/widgets/app_infinity_scroll.dart';
 import 'package:mbank_testy/core/widgets/app_loader.dart';
