@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:mbank_testy/core/resource/data_state.dart';
 import 'package:mbank_testy/features/episodes/domain/entities/episode.dart';
-import 'package:mbank_testy/features/episodes/domain/usecases/get_episode.dart';
+import 'package:mbank_testy/features/episodes/domain/usecases/get_episodes.dart';
 
 part 'remote_episode_event.dart';
 part 'remote_episode_state.dart';
@@ -27,19 +27,22 @@ class RemoteEpisodesBloc
 
     final dataState = await _getEpisodeUseCase(params: state.page);
 
-    if (dataState is DataSuccess &&
-        dataState.data!.pagination.totalPages >= state.page) {
-      emit(state.copyWith(
-        episodes: state.episodes.followedBy(dataState.data!.results).toList(),
-        page: state.page + 1,
-        hasMore: true,
-        status: RemoteEpisodeStatus.success,
-      ));
-    } else {
-      emit(state.copyWith(
-        hasMore: false,
-        status: RemoteEpisodeStatus.success,
-      ));
+    if (dataState is DataSuccess) {
+      if (dataState.data!.pagination!.totalPages! >= state.page) {
+        emit(state.copyWith(
+          episodes: state.episodes
+              .followedBy(dataState.data!.results as List<EpisodeEntity>)
+              .toList(),
+          page: state.page + 1,
+          hasMore: true,
+          status: RemoteEpisodeStatus.success,
+        ));
+      } else {
+        emit(state.copyWith(
+          hasMore: false,
+          status: RemoteEpisodeStatus.success,
+        ));
+      }
     }
 
     if (dataState is DataFailed) {
@@ -58,12 +61,12 @@ class RemoteEpisodesBloc
     emit(state.copyWith(status: RemoteEpisodeStatus.loading));
     final dataState = await _getEpisodeUseCase();
 
-    if (dataState is DataSuccess && dataState.data!.results.isNotEmpty) {
+    if (dataState is DataSuccess && dataState.data!.results!.isNotEmpty) {
       emit(state.copyWith(
-        episodes: dataState.data!.results,
-        hasMore: dataState.data!.pagination.totalPages >= state.page,
-        total: dataState.data!.pagination.total,
-        totalPages: dataState.data!.pagination.totalPages,
+        episodes: dataState.data!.results!,
+        hasMore: dataState.data!.pagination!.totalPages! >= state.page,
+        total: dataState.data!.pagination!.total!,
+        totalPages: dataState.data!.pagination!.totalPages!,
         status: RemoteEpisodeStatus.success,
       ));
     }
