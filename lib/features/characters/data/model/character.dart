@@ -8,7 +8,7 @@ part 'character.g.dart';
 
 @freezed
 class CharacterModel extends CharacterEntity with _$CharacterModel {
-  factory CharacterModel({
+  const factory CharacterModel({
     required String name,
     required int id,
     required String image,

@@ -151,7 +151,7 @@ class __$$CharacterModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CharacterModelImpl implements _CharacterModel {
-  _$CharacterModelImpl(
+  const _$CharacterModelImpl(
       {required this.name,
       required this.id,
       required this.image,
@@ -209,7 +209,7 @@ class _$CharacterModelImpl implements _CharacterModel {
 }
 
 abstract class _CharacterModel implements CharacterModel {
-  factory _CharacterModel(
+  const factory _CharacterModel(
       {required final String name,
       required final int id,
       required final String image,

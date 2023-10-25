@@ -12,11 +12,11 @@ enum CharacterGender {
 }
 
 class CharacterEntity {
-  int id;
-  String name;
-  String image;
-  CharacterStatus status;
-  CharacterGender gender;
+  final int id;
+  final String name;
+  final String image;
+  final CharacterStatus status;
+  final CharacterGender gender;
 
   CharacterEntity({
     required this.id,

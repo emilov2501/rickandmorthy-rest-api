@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mbank_testy/config/routes/routes.dart';
 import 'package:mbank_testy/config/theme/app_themes.dart';
+import 'package:mbank_testy/features/characters/presentation/bloc/characters/remote_characters_bloc.dart';
 import 'package:mbank_testy/features/episodes/presentation/bloc/episode/remote_episode_bloc.dart';
 import 'package:mbank_testy/features/episodes/presentation/bloc/episodes/remote_episode_bloc.dart';
 import 'package:mbank_testy/injection_container.dart';
@@ -24,8 +25,16 @@ class _MyAppState extends State<MyApp> {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) =>
-              sl<RemoteEpisodesBloc>()..add(GetEpisodesEvent()),
+          create: (context) => sl<RemoteCharactersBloc>()
+            ..add(
+              GetCharactersEvent(),
+            ),
+        ),
+        BlocProvider(
+          create: (context) => sl<RemoteEpisodesBloc>()
+            ..add(
+              GetEpisodesEvent(),
+            ),
         ),
         BlocProvider(create: (context) => sl<RemoteSingleEpisodeBloc>()),
       ],

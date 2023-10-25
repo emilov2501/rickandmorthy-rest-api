@@ -4,15 +4,16 @@ import 'package:dio/dio.dart';
 import 'package:mbank_testy/core/resource/data_state.dart';
 import 'package:mbank_testy/features/characters/data/data_source/remote/character_api_service.dart';
 import 'package:mbank_testy/features/characters/data/model/character.dart';
-import 'package:mbank_testy/features/characters/domain/entities/character_base.dart';
+
 import 'package:mbank_testy/features/characters/domain/repository/character_repository.dart';
 
 class CharacterRepositoryImpl implements CharacterRepository {
   final CharacterApiService _characterApiService;
 
   CharacterRepositoryImpl(this._characterApiService);
+
   @override
-  Future<DataState<CharacterBaseEntity>> getCharacters() async {
+  Future<DataState<CharacterBaseModel>> getCharacters() async {
     try {
       final httpResponse = await _characterApiService.getCharacters();
       if (httpResponse.response.statusCode == HttpStatus.ok) {
