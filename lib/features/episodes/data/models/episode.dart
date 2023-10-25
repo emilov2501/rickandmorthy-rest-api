@@ -2,6 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:mbank_testy/features/episodes/domain/entities/episode.dart';
 import 'package:mbank_testy/features/episodes/domain/entities/episode_pagination.dart';
 import 'package:mbank_testy/features/episodes/domain/entities/episode_base.dart';
+import 'package:mbank_testy/features/episodes/domain/entities/episodes_to_filter.dart';
 
 part 'episode.g.dart';
 part 'episode.freezed.dart';
@@ -40,3 +41,5 @@ class EpisodeBaseModel extends EpisodeBaseEntity with _$EpisodeBaseModel {
   factory EpisodeBaseModel.fromJson(Map<String, dynamic> json) =>
       _$EpisodeBaseModelFromJson(json);
 }
+
+typedef EpisodesToFilterModel = EpisodesToFilterEntity;

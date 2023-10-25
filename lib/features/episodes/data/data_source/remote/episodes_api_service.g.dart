@@ -21,9 +21,17 @@ class _EpisodesApiService implements EpisodesApiService {
   String? baseUrl;
 
   @override
-  Future<HttpResponse<EpisodeBaseModel>> getEpisodes({int? page}) async {
+  Future<HttpResponse<EpisodeBaseModel>> getEpisodes({
+    int? page,
+    String? name,
+    String? episode,
+  }) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'page': page};
+    final queryParameters = <String, dynamic>{
+      r'page': page,
+      r'name': name,
+      r'episode': episode,
+    };
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;

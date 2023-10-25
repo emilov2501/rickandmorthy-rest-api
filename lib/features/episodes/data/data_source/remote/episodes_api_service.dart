@@ -12,6 +12,8 @@ abstract class EpisodesApiService {
   @GET('/episode')
   Future<HttpResponse<EpisodeBaseModel>> getEpisodes({
     @Query('page') int? page,
+    @Query('name') String? name,
+    @Query('episode') String? episode,
   });
 
   @GET('/episode/{id}')

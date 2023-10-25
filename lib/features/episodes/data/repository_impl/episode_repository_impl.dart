@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:mbank_testy/core/resource/data_state.dart';
 import 'package:mbank_testy/features/episodes/data/data_source/remote/episodes_api_service.dart';
 import 'package:mbank_testy/features/episodes/data/models/episode.dart';
+import 'package:mbank_testy/features/episodes/domain/entities/episode_base.dart';
 import 'package:mbank_testy/features/episodes/domain/repository/episode_repository.dart';
 
 class EpisodeRepositoryImpl implements EpisodeRepository {
@@ -11,9 +12,11 @@ class EpisodeRepositoryImpl implements EpisodeRepository {
   const EpisodeRepositoryImpl(this._episodesApiService);
 
   @override
-  Future<DataState<EpisodeBaseModel>> getEpisodes({int? page}) async {
+  Future<DataState<EpisodeModel>> getEpisodeById(
+      {required int episodeId}) async {
     try {
-      final httpResponse = await _episodesApiService.getEpisodes(page: page);
+      final httpResponse =
+          await _episodesApiService.getEpisodeById(id: episodeId);
 
       if (httpResponse.response.statusCode == HttpStatus.ok) {
         return DataSuccess(httpResponse.data);
@@ -31,9 +34,14 @@ class EpisodeRepositoryImpl implements EpisodeRepository {
   }
 
   @override
-  Future<DataState<EpisodeModel>> getEpisodeById({required int episodeId}) async {
+  Future<DataState<EpisodeBaseEntity>> getEpisodes(
+      {EpisodesToFilterModel? filter}) async {
     try {
-      final httpResponse = await _episodesApiService.getEpisodeById(id: episodeId);
+      final httpResponse = await _episodesApiService.getEpisodes(
+        page: filter?.page,
+        name: filter?.name,
+        episode: filter?.episode,
+      );
 
       if (httpResponse.response.statusCode == HttpStatus.ok) {
         return DataSuccess(httpResponse.data);

@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:mbank_testy/core/resource/data_state.dart';
 import 'package:mbank_testy/features/episodes/domain/entities/episode.dart';
+import 'package:mbank_testy/features/episodes/domain/entities/episodes_to_filter.dart';
 import 'package:mbank_testy/features/episodes/domain/usecases/get_episodes.dart';
 
 part 'remote_episode_event.dart';
@@ -25,7 +26,7 @@ class RemoteEpisodesBloc
       GetEpisodesNextEvent event, Emitter<RemoteEpisodesState> emit) async {
     emit(state.copyWith(status: RemoteEpisodeStatus.next));
 
-    final dataState = await _getEpisodeUseCase(params: state.page);
+    final dataState = await _getEpisodeUseCase(params: EpisodesToFilterEntity(page: state.page));
 
     if (dataState is DataSuccess) {
       if (dataState.data!.pagination!.totalPages! >= state.page) {
