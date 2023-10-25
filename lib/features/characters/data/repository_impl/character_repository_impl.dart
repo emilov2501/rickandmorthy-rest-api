@@ -13,9 +13,11 @@ class CharacterRepositoryImpl implements CharacterRepository {
   CharacterRepositoryImpl(this._characterApiService);
 
   @override
-  Future<DataState<CharacterBaseModel>> getCharacters() async {
+  Future<DataState<CharacterBaseModel>> getCharacters({filter}) async {
     try {
-      final httpResponse = await _characterApiService.getCharacters();
+      final httpResponse = await _characterApiService.getCharacters(
+        page: filter?.page,
+      );
       if (httpResponse.response.statusCode == HttpStatus.ok) {
         return DataSuccess(httpResponse.data);
       } else {

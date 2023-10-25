@@ -10,7 +10,9 @@ abstract class CharacterApiService {
   factory CharacterApiService(Dio dio) = _CharacterApiService;
 
   @GET('/character')
-  Future<HttpResponse<CharacterBaseModel>> getCharacters();
+  Future<HttpResponse<CharacterBaseModel>> getCharacters({
+    @Query('page') int? page,
+  });
 
   @GET('/character/{id}')
   Future<HttpResponse<CharacterModel>> getCharacterById({

@@ -286,6 +286,11 @@ abstract class GetNextCharactersEvent implements RemoteCharactersEvent {
 /// @nodoc
 mixin _$RemoteCharactersState {
   RemoteCharactersStatus get status => throw _privateConstructorUsedError;
+  String get message => throw _privateConstructorUsedError;
+  int get page => throw _privateConstructorUsedError;
+  dynamic get totalPages => throw _privateConstructorUsedError;
+  dynamic get hasMore => throw _privateConstructorUsedError;
+  dynamic get total => throw _privateConstructorUsedError;
   List<CharacterEntity> get characters => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -299,7 +304,14 @@ abstract class $RemoteCharactersStateCopyWith<$Res> {
           $Res Function(RemoteCharactersState) then) =
       _$RemoteCharactersStateCopyWithImpl<$Res, RemoteCharactersState>;
   @useResult
-  $Res call({RemoteCharactersStatus status, List<CharacterEntity> characters});
+  $Res call(
+      {RemoteCharactersStatus status,
+      String message,
+      int page,
+      dynamic totalPages,
+      dynamic hasMore,
+      dynamic total,
+      List<CharacterEntity> characters});
 }
 
 /// @nodoc
@@ -317,6 +329,11 @@ class _$RemoteCharactersStateCopyWithImpl<$Res,
   @override
   $Res call({
     Object? status = null,
+    Object? message = null,
+    Object? page = null,
+    Object? totalPages = freezed,
+    Object? hasMore = freezed,
+    Object? total = freezed,
     Object? characters = null,
   }) {
     return _then(_value.copyWith(
@@ -324,6 +341,26 @@ class _$RemoteCharactersStateCopyWithImpl<$Res,
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as RemoteCharactersStatus,
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+      page: null == page
+          ? _value.page
+          : page // ignore: cast_nullable_to_non_nullable
+              as int,
+      totalPages: freezed == totalPages
+          ? _value.totalPages
+          : totalPages // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      hasMore: freezed == hasMore
+          ? _value.hasMore
+          : hasMore // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      total: freezed == total
+          ? _value.total
+          : total // ignore: cast_nullable_to_non_nullable
+              as dynamic,
       characters: null == characters
           ? _value.characters
           : characters // ignore: cast_nullable_to_non_nullable
@@ -341,7 +378,14 @@ abstract class _$$RemoteCharactersStateImplCopyWith<$Res>
       __$$RemoteCharactersStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({RemoteCharactersStatus status, List<CharacterEntity> characters});
+  $Res call(
+      {RemoteCharactersStatus status,
+      String message,
+      int page,
+      dynamic totalPages,
+      dynamic hasMore,
+      dynamic total,
+      List<CharacterEntity> characters});
 }
 
 /// @nodoc
@@ -357,6 +401,11 @@ class __$$RemoteCharactersStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
+    Object? message = null,
+    Object? page = null,
+    Object? totalPages = freezed,
+    Object? hasMore = freezed,
+    Object? total = freezed,
     Object? characters = null,
   }) {
     return _then(_$RemoteCharactersStateImpl(
@@ -364,6 +413,17 @@ class __$$RemoteCharactersStateImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as RemoteCharactersStatus,
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+      page: null == page
+          ? _value.page
+          : page // ignore: cast_nullable_to_non_nullable
+              as int,
+      totalPages: freezed == totalPages ? _value.totalPages! : totalPages,
+      hasMore: freezed == hasMore ? _value.hasMore! : hasMore,
+      total: freezed == total ? _value.total! : total,
       characters: null == characters
           ? _value._characters
           : characters // ignore: cast_nullable_to_non_nullable
@@ -377,12 +437,32 @@ class __$$RemoteCharactersStateImplCopyWithImpl<$Res>
 class _$RemoteCharactersStateImpl implements _RemoteCharactersState {
   _$RemoteCharactersStateImpl(
       {this.status = RemoteCharactersStatus.initial,
+      this.message = '',
+      this.page = 1,
+      this.totalPages = 0,
+      this.hasMore = false,
+      this.total = 0,
       final List<CharacterEntity> characters = const []})
       : _characters = characters;
 
   @override
   @JsonKey()
   final RemoteCharactersStatus status;
+  @override
+  @JsonKey()
+  final String message;
+  @override
+  @JsonKey()
+  final int page;
+  @override
+  @JsonKey()
+  final dynamic totalPages;
+  @override
+  @JsonKey()
+  final dynamic hasMore;
+  @override
+  @JsonKey()
+  final dynamic total;
   final List<CharacterEntity> _characters;
   @override
   @JsonKey()
@@ -394,7 +474,7 @@ class _$RemoteCharactersStateImpl implements _RemoteCharactersState {
 
   @override
   String toString() {
-    return 'RemoteCharactersState(status: $status, characters: $characters)';
+    return 'RemoteCharactersState(status: $status, message: $message, page: $page, totalPages: $totalPages, hasMore: $hasMore, total: $total, characters: $characters)';
   }
 
   @override
@@ -403,13 +483,26 @@ class _$RemoteCharactersStateImpl implements _RemoteCharactersState {
         (other.runtimeType == runtimeType &&
             other is _$RemoteCharactersStateImpl &&
             (identical(other.status, status) || other.status == status) &&
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.page, page) || other.page == page) &&
+            const DeepCollectionEquality()
+                .equals(other.totalPages, totalPages) &&
+            const DeepCollectionEquality().equals(other.hasMore, hasMore) &&
+            const DeepCollectionEquality().equals(other.total, total) &&
             const DeepCollectionEquality()
                 .equals(other._characters, _characters));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, status, const DeepCollectionEquality().hash(_characters));
+      runtimeType,
+      status,
+      message,
+      page,
+      const DeepCollectionEquality().hash(totalPages),
+      const DeepCollectionEquality().hash(hasMore),
+      const DeepCollectionEquality().hash(total),
+      const DeepCollectionEquality().hash(_characters));
 
   @JsonKey(ignore: true)
   @override
@@ -422,10 +515,25 @@ class _$RemoteCharactersStateImpl implements _RemoteCharactersState {
 abstract class _RemoteCharactersState implements RemoteCharactersState {
   factory _RemoteCharactersState(
       {final RemoteCharactersStatus status,
+      final String message,
+      final int page,
+      final dynamic totalPages,
+      final dynamic hasMore,
+      final dynamic total,
       final List<CharacterEntity> characters}) = _$RemoteCharactersStateImpl;
 
   @override
   RemoteCharactersStatus get status;
+  @override
+  String get message;
+  @override
+  int get page;
+  @override
+  dynamic get totalPages;
+  @override
+  dynamic get hasMore;
+  @override
+  dynamic get total;
   @override
   List<CharacterEntity> get characters;
   @override
