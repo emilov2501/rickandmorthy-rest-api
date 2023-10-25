@@ -18,9 +18,14 @@ class EpisodeWidget extends StatelessWidget {
           crossAxisAlignment: WrapCrossAlignment.center,
           alignment: WrapAlignment.spaceBetween,
           children: [
-            Text(
-              '${episode.title}',
-              style: const TextStyle(fontSize: 18),
+            SizedBox(
+              width: MediaQuery.of(context).size.width - 100,
+              child: Text(
+                '${episode.title}',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(fontSize: 18),
+              ),
             ),
             const Icon(
               Icons.arrow_forward_ios,
