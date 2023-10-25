@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mbank_testy/core/widgets/app_failure.dart';
+import 'package:mbank_testy/core/widgets/app_infinity_scroll.dart';
 import 'package:mbank_testy/core/widgets/app_loader.dart';
 import 'package:mbank_testy/features/episodes/domain/entities/episode.dart';
 import 'package:mbank_testy/features/episodes/presentation/bloc/episodes/remote_episode_bloc.dart';
@@ -14,19 +15,8 @@ class Episodes extends StatefulWidget {
 }
 
 class _EpisodesState extends State<Episodes> {
-  late ScrollController _scrollController;
-
-  @override
-  void initState() {
-    _scrollController = ScrollController();
-    _scrollController.addListener(() {
-      if (_scrollController.offset ==
-          _scrollController.position.maxScrollExtent) {
-        context.read<RemoteEpisodesBloc>().add(GetEpisodesNextEvent());
-      }
-    });
-
-    super.initState();
+  void fetchData() {
+    context.read<RemoteEpisodesBloc>().add(GetEpisodesNextEvent());
   }
 
   @override
@@ -60,7 +50,12 @@ class _EpisodesState extends State<Episodes> {
             return Column(
               children: [
                 Expanded(
-                  child: _buildInfinitiScrollListView(episodes, state),
+                  child: _buildInfinitiScrollListView(
+                    episodes,
+                    state,
+                    fetchData,
+                    state.hasMore,
+                  ),
                 ),
               ],
             );
@@ -72,40 +67,20 @@ class _EpisodesState extends State<Episodes> {
     );
   }
 
-  ListView _buildInfinitiScrollListView(
-      List<EpisodeEntity> episodes, RemoteEpisodesState state) {
-    return ListView.builder(
-      controller: _scrollController,
-      itemCount: episodes.length + 1,
-      itemBuilder: (context, index) {
-        if (index < episodes.length) {
-          return EpisodeWidget(
-            onTap: (episode) => _onEpisodePressed(context, episode),
-            episode: episodes[index],
-          );
-        } else {
-          if (state.hasMore) {
-            return const Padding(
-              padding: EdgeInsets.symmetric(vertical: 25),
-              child: Center(
-                child: CircularProgressIndicator.adaptive(),
-              ),
-            );
-          } else {
-            return const Padding(
-              padding: EdgeInsets.symmetric(vertical: 25),
-              child: Center(
-                child: Text(
-                  'No more data to load',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ),
-            );
-          }
-        }
-      },
+  AppInfinityScroll _buildInfinitiScrollListView(
+    List<EpisodeEntity> episodes,
+    RemoteEpisodesState state,
+    Function fetch,
+    bool hasMore,
+  ) {
+    return AppInfinityScroll<EpisodeEntity>(
+      fetch: fetch,
+      hasMore: hasMore,
+      items: episodes,
+      builder: (episode) => EpisodeWidget(
+        onTap: (episode) => _onEpisodePressed(context, episode),
+        episode: episode,
+      ),
     );
   }
 
