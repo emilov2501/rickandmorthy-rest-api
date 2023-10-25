@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mbank_testy/config/routes/routes.dart';
 import 'package:mbank_testy/config/theme/app_themes.dart';
-import 'package:mbank_testy/features/episodes/presentation/bloc/episode/remote_episode_bloc.dart';
+import 'package:mbank_testy/features/episodes/presentation/bloc/episodes/remote_episode_bloc.dart';
 import 'package:mbank_testy/features/episodes/presentation/pages/home/episodes.dart';
 import 'package:mbank_testy/injection_container.dart';
 
@@ -29,6 +30,7 @@ class _MyAppState extends State<MyApp> {
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
+        onGenerateRoute: AppRoutes.onGenerateRoutes,
         debugShowCheckedModeBanner: false,
         theme: theme(),
         home: const Episodes(),

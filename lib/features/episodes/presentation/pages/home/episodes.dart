@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mbank_testy/features/episodes/presentation/bloc/episode/remote_episode_bloc.dart';
+import 'package:mbank_testy/features/episodes/domain/entities/episode.dart';
+import 'package:mbank_testy/features/episodes/presentation/bloc/episodes/remote_episode_bloc.dart';
 import 'package:mbank_testy/features/episodes/presentation/widgets/episode_tile.dart';
 
 class Episodes extends StatefulWidget {
@@ -36,7 +37,7 @@ class _EpisodesState extends State<Episodes> {
 
   AppBar _buildAppBar() {
     return AppBar(
-      title: const Text('Эпизоды'),
+      title: const Text('Episodes'),
     );
   }
 
@@ -62,38 +63,7 @@ class _EpisodesState extends State<Episodes> {
             return Column(
               children: [
                 Expanded(
-                  child: ListView.builder(
-                    controller: _scrollController,
-                    itemCount: episodes.length + 1,
-                    itemBuilder: (context, index) {
-                      if (index < episodes.length) {
-                        return EpisodeWidget(
-                          episode: episodes[index],
-                        );
-                      } else {
-                        if (state.hasMore) {
-                          return const Padding(
-                            padding: EdgeInsets.symmetric(vertical: 25),
-                            child: Center(
-                              child: CircularProgressIndicator.adaptive(),
-                            ),
-                          );
-                        } else {
-                          return const Padding(
-                            padding: EdgeInsets.symmetric(vertical: 25),
-                            child: Center(
-                              child: Text(
-                                'No more data to load',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ),
-                          );
-                        }
-                      }
-                    },
-                  ),
+                  child: _buildInfinitiScrollListView(episodes, state),
                 ),
               ],
             );
@@ -104,4 +74,45 @@ class _EpisodesState extends State<Episodes> {
       ),
     );
   }
+
+  ListView _buildInfinitiScrollListView(
+      List<EpisodeEntity> episodes, RemoteEpisodesState state) {
+    return ListView.builder(
+      controller: _scrollController,
+      itemCount: episodes.length + 1,
+      itemBuilder: (context, index) {
+        if (index < episodes.length) {
+          return EpisodeWidget(
+            onTap: (episode) => _onEpisodePressed(context, episode),
+            episode: episodes[index],
+          );
+        } else {
+          if (state.hasMore) {
+            return const Padding(
+              padding: EdgeInsets.symmetric(vertical: 25),
+              child: Center(
+                child: CircularProgressIndicator.adaptive(),
+              ),
+            );
+          } else {
+            return const Padding(
+              padding: EdgeInsets.symmetric(vertical: 25),
+              child: Center(
+                child: Text(
+                  'No more data to load',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+            );
+          }
+        }
+      },
+    );
+  }
+
+  Future<Object?> _onEpisodePressed(
+          BuildContext context, EpisodeEntity episode) =>
+      Navigator.pushNamed(context, '/EpisodeDetail', arguments: episode);
 }
