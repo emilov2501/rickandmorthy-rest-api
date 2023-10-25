@@ -4,6 +4,8 @@ import 'package:mbank_testy/features/episodes/data/data_source/remote/episodes_a
 import 'package:mbank_testy/features/episodes/data/repository_impl/episode_repository_impl.dart';
 import 'package:mbank_testy/features/episodes/domain/repository/episode_repository.dart';
 import 'package:mbank_testy/features/episodes/domain/usecases/get_episodes.dart';
+import 'package:mbank_testy/features/episodes/domain/usecases/get_single_episode.dart';
+import 'package:mbank_testy/features/episodes/presentation/bloc/episode/remote_episode_bloc.dart';
 import 'package:mbank_testy/features/episodes/presentation/bloc/episodes/remote_episode_bloc.dart';
 
 GetIt sl = GetIt.instance;
@@ -19,10 +21,17 @@ Future<void> initializeDependencies() async {
 
   // UseCases
   sl.registerSingleton<GetEpisodeUseCase>(GetEpisodeUseCase(sl()));
+  sl.registerSingleton<GetSingleEpisodeUseCase>(GetSingleEpisodeUseCase(sl()));
 
   // Bloc
   sl.registerFactory<RemoteEpisodesBloc>(
     () => RemoteEpisodesBloc(
+      sl(),
+    ),
+  );
+
+  sl.registerFactory<RemoteSingleEpisodeBloc>(
+    () => RemoteSingleEpisodeBloc(
       sl(),
     ),
   );
