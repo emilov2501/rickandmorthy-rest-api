@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mbank_testy/core/util/string.dart';
 import 'package:mbank_testy/features/characters/domain/entities/character.dart';
 
 class CharacterWidget extends StatelessWidget {
@@ -40,11 +41,11 @@ class CharacterWidget extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                Text('Gender: ${character.gender.name}'),
+                Text('Gender: ${character.gender.name.capitalize()}'),
                  const SizedBox(
                   height: 5,
                 ),
-                Text('Status: ${character.status.name}')
+                Text('Status: ${character.status.name.capitalize()}')
               ],
             ),
           )

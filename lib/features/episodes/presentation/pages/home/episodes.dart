@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mbank_testy/core/widgets/app_failure.dart';
+import 'package:mbank_testy/core/widgets/app_loader.dart';
 import 'package:mbank_testy/features/episodes/domain/entities/episode.dart';
 import 'package:mbank_testy/features/episodes/presentation/bloc/episodes/remote_episode_bloc.dart';
 import 'package:mbank_testy/features/episodes/presentation/widgets/episode_tile.dart';
@@ -45,20 +47,15 @@ class _EpisodesState extends State<Episodes> {
     return SafeArea(
       child: BlocBuilder<RemoteEpisodesBloc, RemoteEpisodesState>(
         builder: (_, state) {
-          if (state.status == RemoteEpisodeStatus.loading) {
-            return const Center(
-              child: CircularProgressIndicator.adaptive(),
-            );
+          if (state.status.isLoading) {
+            return const AppLoader();
           }
 
-          if (state.status == RemoteEpisodeStatus.failure) {
-            return const Center(
-              child: Icon(Icons.refresh),
-            );
+          if (state.status.isFailure) {
+            return const AppFailure();
           }
 
-          if (state.status == RemoteEpisodeStatus.success ||
-              state.status == RemoteEpisodeStatus.next) {
+          if (state.status.isSuccess || state.status.isNext) {
             final episodes = state.episodes;
             return Column(
               children: [
