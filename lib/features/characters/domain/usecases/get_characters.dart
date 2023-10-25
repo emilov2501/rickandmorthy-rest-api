@@ -10,7 +10,7 @@ class GetCharactersUseCase
   GetCharactersUseCase(this._characterRepository);
 
   @override
-  Future<DataState<CharacterBaseEntity>> call({params}) {
+  Future<DataState<CharacterBaseEntity>> call({void params}) {
     return _characterRepository.getCharacters();
   }
 }

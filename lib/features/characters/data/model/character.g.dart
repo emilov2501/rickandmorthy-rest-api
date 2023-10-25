@@ -26,15 +26,15 @@ Map<String, dynamic> _$$CharacterModelImplToJson(
     };
 
 const _$CharacterStatusEnumMap = {
-  CharacterStatus.alive: 'alive',
-  CharacterStatus.dead: 'dead',
+  CharacterStatus.alive: 'Alive',
+  CharacterStatus.dead: 'Dead',
   CharacterStatus.unknown: 'unknown',
 };
 
 const _$CharacterGenderEnumMap = {
-  CharacterGender.female: 'female',
-  CharacterGender.male: 'male',
-  CharacterGender.genderless: 'genderless',
+  CharacterGender.female: 'Female',
+  CharacterGender.male: 'Male',
+  CharacterGender.genderless: 'Genderless',
   CharacterGender.unknown: 'unknown',
 };
 
