@@ -1,8 +1,8 @@
 class EpisodePaginationEntity {
-  final int? total;
-  final int? totalPages;
+  final int total;
+  final int totalPages;
   const EpisodePaginationEntity({
-    this.total,
-    this.totalPages,
+    required this.total,
+    required this.totalPages,
   });
 }

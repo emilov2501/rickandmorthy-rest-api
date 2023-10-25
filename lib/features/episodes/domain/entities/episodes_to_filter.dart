@@ -3,5 +3,9 @@ class EpisodesToFilterEntity {
   String? name;
   String? episode;
 
-  EpisodesToFilterEntity({this.episode, this.name, this.page});
+  EpisodesToFilterEntity({
+    this.episode,
+    this.name,
+    this.page,
+  });
 }

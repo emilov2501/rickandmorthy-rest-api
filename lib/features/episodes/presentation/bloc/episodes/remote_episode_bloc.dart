@@ -26,14 +26,13 @@ class RemoteEpisodesBloc
       GetEpisodesNextEvent event, Emitter<RemoteEpisodesState> emit) async {
     emit(state.copyWith(status: RemoteEpisodeStatus.next));
 
-    final dataState = await _getEpisodeUseCase(params: EpisodesToFilterEntity(page: state.page));
+    final dataState = await _getEpisodeUseCase(
+        params: EpisodesToFilterEntity(page: state.page));
 
     if (dataState is DataSuccess) {
-      if (dataState.data!.pagination!.totalPages! >= state.page) {
+      if (dataState.data!.pagination.totalPages >= state.page) {
         emit(state.copyWith(
-          episodes: state.episodes
-              .followedBy(dataState.data!.results as List<EpisodeEntity>)
-              .toList(),
+          episodes: state.episodes.followedBy(dataState.data!.results).toList(),
           page: state.page + 1,
           hasMore: true,
           status: RemoteEpisodeStatus.success,
@@ -62,12 +61,12 @@ class RemoteEpisodesBloc
     emit(state.copyWith(status: RemoteEpisodeStatus.loading));
     final dataState = await _getEpisodeUseCase();
 
-    if (dataState is DataSuccess && dataState.data!.results!.isNotEmpty) {
+    if (dataState is DataSuccess && dataState.data!.results.isNotEmpty) {
       emit(state.copyWith(
-        episodes: dataState.data!.results!,
-        hasMore: dataState.data!.pagination!.totalPages! >= state.page,
-        total: dataState.data!.pagination!.total!,
-        totalPages: dataState.data!.pagination!.totalPages!,
+        episodes: dataState.data!.results,
+        hasMore: dataState.data!.pagination.totalPages >= state.page,
+        total: dataState.data!.pagination.total,
+        totalPages: dataState.data!.pagination.totalPages,
         status: RemoteEpisodeStatus.success,
       ));
     }
