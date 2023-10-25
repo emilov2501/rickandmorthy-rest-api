@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mbank_testy/config/routes/routes.dart';
 import 'package:mbank_testy/config/theme/app_themes.dart';
 import 'package:mbank_testy/features/episodes/presentation/bloc/episodes/remote_episode_bloc.dart';
-import 'package:mbank_testy/features/episodes/presentation/pages/home/episodes.dart';
 import 'package:mbank_testy/injection_container.dart';
 
 class MyApp extends StatefulWidget {
@@ -19,13 +18,13 @@ class _MyAppState extends State<MyApp> {
     super.initState();
   }
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => sl<RemoteEpisodesBloc>()..add(GetEpisodesEvent()),
+          create: (context) =>
+              sl<RemoteEpisodesBloc>()..add(GetEpisodesEvent()),
         ),
       ],
       child: MaterialApp(
@@ -33,7 +32,6 @@ class _MyAppState extends State<MyApp> {
         onGenerateRoute: AppRoutes.onGenerateRoutes,
         debugShowCheckedModeBanner: false,
         theme: theme(),
-        home: const Episodes(),
       ),
     );
   }
