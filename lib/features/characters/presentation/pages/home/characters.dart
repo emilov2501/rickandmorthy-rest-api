@@ -3,8 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mbank_testy/core/widgets/app_failure.dart';
 import 'package:mbank_testy/core/widgets/app_infinity_scroll.dart';
 import 'package:mbank_testy/core/widgets/app_loader.dart';
+import 'package:get/get.dart' as get_route;
 import 'package:mbank_testy/features/characters/domain/entities/character.dart';
 import 'package:mbank_testy/features/characters/presentation/bloc/characters/remote_characters_bloc.dart';
+import 'package:mbank_testy/features/characters/presentation/pages/detail/character_detail.dart';
 import 'package:mbank_testy/features/characters/presentation/widgets/character_filter.dart';
 import 'package:material_dialogs/material_dialogs.dart';
 import 'package:mbank_testy/features/characters/presentation/widgets/character_tile.dart';
@@ -70,6 +72,7 @@ class _CharactersState extends State<Characters> {
                       hasMore: state.hasMore,
                       builder: (character) => CharacterWidget(
                         character: character,
+                        onPressed: _onCharacterPressed,
                       ),
                     ),
                   );
@@ -80,4 +83,9 @@ class _CharactersState extends State<Characters> {
       },
     );
   }
+
+  _onCharacterPressed(character) => get_route.Get.to(
+      duration: const Duration(milliseconds: 500),
+      transition: get_route.Transition.fade,
+      () => CharacterDetail(character: character));
 }

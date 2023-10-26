@@ -7,9 +7,11 @@ import 'package:mbank_testy/injection_container.dart';
 
 class CharacterWidget extends StatefulWidget {
   final CharacterEntity character;
+  final Function(CharacterEntity character) onPressed;
 
   const CharacterWidget({
     super.key,
+    required this.onPressed,
     required this.character,
   });
 
@@ -26,75 +28,80 @@ class _CharacterWidgetState extends State<CharacterWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsetsDirectional.only(
-        start: 14,
-        end: 14,
-        bottom: 14,
-        top: 14,
-      ),
-      child: Wrap(
-        spacing: 20,
-        crossAxisAlignment: WrapCrossAlignment.center,
-        children: [
-          SizedBox(
-            width: 100,
-            height: 100,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: CachedNetworkImage(
-                cacheManager: sl<CacheManager>(),
-                key: UniqueKey(),
-                imageUrl: widget.character.image,
-                imageBuilder: _imageBuilder,
-                placeholder: _loader,
-                errorWidget: _error,
+    return GestureDetector(
+      onTap: () => widget.onPressed(widget.character),
+      child: Container(
+        padding: const EdgeInsetsDirectional.only(
+          start: 14,
+          end: 14,
+          bottom: 14,
+          top: 14,
+        ),
+        child: Wrap(
+          spacing: 20,
+          crossAxisAlignment: WrapCrossAlignment.center,
+          children: [
+            SizedBox(
+              width: 100,
+              height: 100,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: CachedNetworkImage(
+                  cacheManager: sl<CacheManager>(),
+                  key: UniqueKey(),
+                  imageUrl: widget.character.image,
+                  imageBuilder: _imageBuilder,
+                  placeholder: _loader,
+                  errorWidget: _error,
+                ),
               ),
             ),
-          ),
-          SizedBox(
-            width: MediaQuery.of(context).size.width - 148,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  widget.character.name,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).textTheme.bodyLarge,
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  'Gender: ${widget.character.gender.name.capitalize()}',
-                  style: Theme.of(context).textTheme.bodySmall,
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  children: [
-                    Text('${emoji[widget.character.status.name]}',
-                        style: const TextStyle(
-                            fontSize: 12, overflow: TextOverflow.ellipsis)),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Expanded(
-                      child: Text(
-                        '${widget.character.species.capitalize()} - ${widget.character.status.name.capitalize()}',
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                              overflow: TextOverflow.ellipsis,
-                            ),
+            Container(
+              decoration: const BoxDecoration(color: Colors.transparent),
+              width: MediaQuery.of(context).size.width - 148,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    widget.character.name,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    'Gender: ${widget.character.gender.name.capitalize()}',
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    children: [
+                      Text('${emoji[widget.character.status.name]}',
+                          style: const TextStyle(
+                              fontSize: 12, overflow: TextOverflow.ellipsis)),
+                      const SizedBox(
+                        width: 10,
                       ),
-                    ),
-                  ],
-                )
-              ],
-            ),
-          )
-        ],
+                      Expanded(
+                        child: Text(
+                          '${widget.character.species.capitalize()} - ${widget.character.status.name.capitalize()}',
+                          style:
+                              Theme.of(context).textTheme.bodySmall?.copyWith(
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
