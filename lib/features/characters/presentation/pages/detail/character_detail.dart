@@ -11,7 +11,7 @@ class CharacterDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Rick'),
+        title: Text(character?.name ?? ''),
       ),
       body: SafeArea(
         child:
