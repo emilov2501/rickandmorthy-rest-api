@@ -21,6 +21,7 @@ CharacterModel _$CharacterModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$CharacterModel {
   String get name => throw _privateConstructorUsedError;
+  String get species => throw _privateConstructorUsedError;
   int get id => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
   CharacterStatus get status => throw _privateConstructorUsedError;
@@ -40,6 +41,7 @@ abstract class $CharacterModelCopyWith<$Res> {
   @useResult
   $Res call(
       {String name,
+      String species,
       int id,
       String image,
       CharacterStatus status,
@@ -60,6 +62,7 @@ class _$CharacterModelCopyWithImpl<$Res, $Val extends CharacterModel>
   @override
   $Res call({
     Object? name = null,
+    Object? species = null,
     Object? id = null,
     Object? image = null,
     Object? status = null,
@@ -69,6 +72,10 @@ class _$CharacterModelCopyWithImpl<$Res, $Val extends CharacterModel>
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      species: null == species
+          ? _value.species
+          : species // ignore: cast_nullable_to_non_nullable
               as String,
       id: null == id
           ? _value.id
@@ -100,6 +107,7 @@ abstract class _$$CharacterModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {String name,
+      String species,
       int id,
       String image,
       CharacterStatus status,
@@ -118,6 +126,7 @@ class __$$CharacterModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = null,
+    Object? species = null,
     Object? id = null,
     Object? image = null,
     Object? status = null,
@@ -127,6 +136,10 @@ class __$$CharacterModelImplCopyWithImpl<$Res>
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      species: null == species
+          ? _value.species
+          : species // ignore: cast_nullable_to_non_nullable
               as String,
       id: null == id
           ? _value.id
@@ -153,6 +166,7 @@ class __$$CharacterModelImplCopyWithImpl<$Res>
 class _$CharacterModelImpl implements _CharacterModel {
   const _$CharacterModelImpl(
       {required this.name,
+      required this.species,
       required this.id,
       required this.image,
       required this.status,
@@ -164,6 +178,8 @@ class _$CharacterModelImpl implements _CharacterModel {
   @override
   final String name;
   @override
+  final String species;
+  @override
   final int id;
   @override
   final String image;
@@ -174,7 +190,7 @@ class _$CharacterModelImpl implements _CharacterModel {
 
   @override
   String toString() {
-    return 'CharacterModel(name: $name, id: $id, image: $image, status: $status, gender: $gender)';
+    return 'CharacterModel(name: $name, species: $species, id: $id, image: $image, status: $status, gender: $gender)';
   }
 
   @override
@@ -183,6 +199,7 @@ class _$CharacterModelImpl implements _CharacterModel {
         (other.runtimeType == runtimeType &&
             other is _$CharacterModelImpl &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.species, species) || other.species == species) &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.image, image) || other.image == image) &&
             (identical(other.status, status) || other.status == status) &&
@@ -191,7 +208,8 @@ class _$CharacterModelImpl implements _CharacterModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, id, image, status, gender);
+  int get hashCode =>
+      Object.hash(runtimeType, name, species, id, image, status, gender);
 
   @JsonKey(ignore: true)
   @override
@@ -211,6 +229,7 @@ class _$CharacterModelImpl implements _CharacterModel {
 abstract class _CharacterModel implements CharacterModel {
   const factory _CharacterModel(
       {required final String name,
+      required final String species,
       required final int id,
       required final String image,
       required final CharacterStatus status,
@@ -221,6 +240,8 @@ abstract class _CharacterModel implements CharacterModel {
 
   @override
   String get name;
+  @override
+  String get species;
   @override
   int get id;
   @override

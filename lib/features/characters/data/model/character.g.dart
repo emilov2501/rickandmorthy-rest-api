@@ -9,6 +9,7 @@ part of 'character.dart';
 _$CharacterModelImpl _$$CharacterModelImplFromJson(Map<String, dynamic> json) =>
     _$CharacterModelImpl(
       name: json['name'] as String,
+      species: json['species'] as String,
       id: json['id'] as int,
       image: json['image'] as String,
       status: $enumDecode(_$CharacterStatusEnumMap, json['status']),
@@ -19,6 +20,7 @@ Map<String, dynamic> _$$CharacterModelImplToJson(
         _$CharacterModelImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
+      'species': instance.species,
       'id': instance.id,
       'image': instance.image,
       'status': _$CharacterStatusEnumMap[instance.status]!,

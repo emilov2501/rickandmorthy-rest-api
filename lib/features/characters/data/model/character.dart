@@ -10,6 +10,7 @@ part 'character.g.dart';
 class CharacterModel extends CharacterEntity with _$CharacterModel {
   const factory CharacterModel({
     required String name,
+    required String species,
     required int id,
     required String image,
     required CharacterStatus status,

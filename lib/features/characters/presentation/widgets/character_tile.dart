@@ -5,13 +5,24 @@ import 'package:mbank_testy/core/util/string.dart';
 import 'package:mbank_testy/features/characters/domain/entities/character.dart';
 import 'package:mbank_testy/injection_container.dart';
 
-class CharacterWidget extends StatelessWidget {
+class CharacterWidget extends StatefulWidget {
   final CharacterEntity character;
 
   const CharacterWidget({
     super.key,
     required this.character,
   });
+
+  @override
+  State<CharacterWidget> createState() => _CharacterWidgetState();
+}
+
+class _CharacterWidgetState extends State<CharacterWidget> {
+  Map<String, String> emoji = {
+    CharacterStatus.alive.name: '🟢',
+    CharacterStatus.dead.name: '🔴',
+    CharacterStatus.unknown.name: '🚫',
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +42,7 @@ class CharacterWidget extends StatelessWidget {
             child: CachedNetworkImage(
               cacheManager: sl<CacheManager>(),
               key: UniqueKey(),
-              imageUrl: character.image,
+              imageUrl: widget.character.image,
               imageBuilder: _imageBuilder,
               placeholder: _loader,
               errorWidget: _error,
@@ -43,7 +54,7 @@ class CharacterWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  character.name,
+                  widget.character.name,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: Theme.of(context).textTheme.bodyLarge,
@@ -52,15 +63,22 @@ class CharacterWidget extends StatelessWidget {
                   height: 20,
                 ),
                 Text(
-                  'Gender: ${character.gender.name.capitalize()}',
+                  'Gender: ${widget.character.gender.name.capitalize()}',
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
                 const SizedBox(
                   height: 20,
                 ),
-                Text(
-                  'Status: ${character.status.name.capitalize()}',
-                  style: Theme.of(context).textTheme.bodySmall,
+                Wrap(
+                  spacing: 10,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  children: [
+                    Text('${emoji[widget.character.status.name]}',
+                        style: const TextStyle(fontSize: 12)),
+                    Text(
+                        '${widget.character.species.capitalize()} - ${widget.character.status.name.capitalize()}',
+                        style: Theme.of(context).textTheme.bodySmall),
+                  ],
                 )
               ],
             ),
