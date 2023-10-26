@@ -60,13 +60,14 @@ class RemoteCharactersBloc
       emit(
         state.copyWith(
           status: RemoteCharactersStatus.next,
+          filter: state.filter.copyWith(
+            page: state.filter.page + 1,
+          ),
         ),
       );
 
       final dataState = await _getCharactersUseCase(
-        params: state.filter.copyWith(
-          page: state.filter.page + 1,
-        ),
+        params: state.filter,
       );
 
       if (dataState is DataSuccess) {

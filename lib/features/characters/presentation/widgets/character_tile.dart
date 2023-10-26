@@ -37,15 +37,19 @@ class _CharacterWidgetState extends State<CharacterWidget> {
         spacing: 20,
         crossAxisAlignment: WrapCrossAlignment.center,
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: CachedNetworkImage(
-              cacheManager: sl<CacheManager>(),
-              key: UniqueKey(),
-              imageUrl: widget.character.image,
-              imageBuilder: _imageBuilder,
-              placeholder: _loader,
-              errorWidget: _error,
+          SizedBox(
+            width: 100,
+            height: 100,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: CachedNetworkImage(
+                cacheManager: sl<CacheManager>(),
+                key: UniqueKey(),
+                imageUrl: widget.character.image,
+                imageBuilder: _imageBuilder,
+                placeholder: _loader,
+                errorWidget: _error,
+              ),
             ),
           ),
           SizedBox(
@@ -69,15 +73,22 @@ class _CharacterWidgetState extends State<CharacterWidget> {
                 const SizedBox(
                   height: 20,
                 ),
-                Wrap(
-                  spacing: 10,
-                  crossAxisAlignment: WrapCrossAlignment.center,
+                Row(
                   children: [
                     Text('${emoji[widget.character.status.name]}',
-                        style: const TextStyle(fontSize: 12)),
-                    Text(
+                        style: const TextStyle(
+                            fontSize: 12, overflow: TextOverflow.ellipsis)),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Expanded(
+                      child: Text(
                         '${widget.character.species.capitalize()} - ${widget.character.status.name.capitalize()}',
-                        style: Theme.of(context).textTheme.bodySmall),
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                      ),
+                    ),
                   ],
                 )
               ],

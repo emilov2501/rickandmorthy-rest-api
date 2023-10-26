@@ -48,13 +48,8 @@ class _FilterChipBuilderState extends State<FilterChipBuilder> {
                     widget.list[index].name.capitalize(),
                     style: Theme.of(context).textTheme.labelSmall,
                   ),
-                  onSelected: (v) {
-                    widget.onTap(
-                      widget.list[index].name,
-                    );
-
-                    setState(() {});
-                  },
+                  onSelected: (value) =>
+                      widget.onTap(value ? widget.list[index].name : ''),
                 ),
               )
             ],
