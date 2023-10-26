@@ -25,12 +25,14 @@ class _CharacterApiService implements CharacterApiService {
     int? page,
     String? gender,
     String? status,
+    String? name,
   }) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'page': page,
       r'gender': gender,
       r'status': status,
+      r'name': name,
     };
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};

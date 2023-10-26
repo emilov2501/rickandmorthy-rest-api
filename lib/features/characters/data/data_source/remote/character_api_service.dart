@@ -14,6 +14,7 @@ abstract class CharacterApiService {
     @Query('page') int? page,
     @Query('gender') String? gender,
     @Query('status') String? status,
+    @Query('name') String? name,
   });
 
   @GET('/character/{id}')

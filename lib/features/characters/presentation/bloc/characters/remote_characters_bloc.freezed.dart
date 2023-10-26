@@ -22,6 +22,7 @@ mixin _$RemoteCharactersEvent {
     required TResult Function() getNextCharacters,
     required TResult Function(CharacterToFilterEntity filter)
         getFilteredCharacters,
+    required TResult Function(String value) searchEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -29,6 +30,7 @@ mixin _$RemoteCharactersEvent {
     TResult? Function()? getCharacters,
     TResult? Function()? getNextCharacters,
     TResult? Function(CharacterToFilterEntity filter)? getFilteredCharacters,
+    TResult? Function(String value)? searchEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -36,6 +38,7 @@ mixin _$RemoteCharactersEvent {
     TResult Function()? getCharacters,
     TResult Function()? getNextCharacters,
     TResult Function(CharacterToFilterEntity filter)? getFilteredCharacters,
+    TResult Function(String value)? searchEvent,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -45,6 +48,7 @@ mixin _$RemoteCharactersEvent {
     required TResult Function(GetNextCharactersEvent value) getNextCharacters,
     required TResult Function(GetFilteredCharactersEvent value)
         getFilteredCharacters,
+    required TResult Function(GetSearchedCharactersEvent value) searchEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -52,6 +56,7 @@ mixin _$RemoteCharactersEvent {
     TResult? Function(GetCharactersEvent value)? getCharacters,
     TResult? Function(GetNextCharactersEvent value)? getNextCharacters,
     TResult? Function(GetFilteredCharactersEvent value)? getFilteredCharacters,
+    TResult? Function(GetSearchedCharactersEvent value)? searchEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -59,6 +64,7 @@ mixin _$RemoteCharactersEvent {
     TResult Function(GetCharactersEvent value)? getCharacters,
     TResult Function(GetNextCharactersEvent value)? getNextCharacters,
     TResult Function(GetFilteredCharactersEvent value)? getFilteredCharacters,
+    TResult Function(GetSearchedCharactersEvent value)? searchEvent,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -125,6 +131,7 @@ class _$GetCharactersEventImpl implements GetCharactersEvent {
     required TResult Function() getNextCharacters,
     required TResult Function(CharacterToFilterEntity filter)
         getFilteredCharacters,
+    required TResult Function(String value) searchEvent,
   }) {
     return getCharacters();
   }
@@ -135,6 +142,7 @@ class _$GetCharactersEventImpl implements GetCharactersEvent {
     TResult? Function()? getCharacters,
     TResult? Function()? getNextCharacters,
     TResult? Function(CharacterToFilterEntity filter)? getFilteredCharacters,
+    TResult? Function(String value)? searchEvent,
   }) {
     return getCharacters?.call();
   }
@@ -145,6 +153,7 @@ class _$GetCharactersEventImpl implements GetCharactersEvent {
     TResult Function()? getCharacters,
     TResult Function()? getNextCharacters,
     TResult Function(CharacterToFilterEntity filter)? getFilteredCharacters,
+    TResult Function(String value)? searchEvent,
     required TResult orElse(),
   }) {
     if (getCharacters != null) {
@@ -160,6 +169,7 @@ class _$GetCharactersEventImpl implements GetCharactersEvent {
     required TResult Function(GetNextCharactersEvent value) getNextCharacters,
     required TResult Function(GetFilteredCharactersEvent value)
         getFilteredCharacters,
+    required TResult Function(GetSearchedCharactersEvent value) searchEvent,
   }) {
     return getCharacters(this);
   }
@@ -170,6 +180,7 @@ class _$GetCharactersEventImpl implements GetCharactersEvent {
     TResult? Function(GetCharactersEvent value)? getCharacters,
     TResult? Function(GetNextCharactersEvent value)? getNextCharacters,
     TResult? Function(GetFilteredCharactersEvent value)? getFilteredCharacters,
+    TResult? Function(GetSearchedCharactersEvent value)? searchEvent,
   }) {
     return getCharacters?.call(this);
   }
@@ -180,6 +191,7 @@ class _$GetCharactersEventImpl implements GetCharactersEvent {
     TResult Function(GetCharactersEvent value)? getCharacters,
     TResult Function(GetNextCharactersEvent value)? getNextCharacters,
     TResult Function(GetFilteredCharactersEvent value)? getFilteredCharacters,
+    TResult Function(GetSearchedCharactersEvent value)? searchEvent,
     required TResult orElse(),
   }) {
     if (getCharacters != null) {
@@ -239,6 +251,7 @@ class _$GetNextCharactersEventImpl implements GetNextCharactersEvent {
     required TResult Function() getNextCharacters,
     required TResult Function(CharacterToFilterEntity filter)
         getFilteredCharacters,
+    required TResult Function(String value) searchEvent,
   }) {
     return getNextCharacters();
   }
@@ -249,6 +262,7 @@ class _$GetNextCharactersEventImpl implements GetNextCharactersEvent {
     TResult? Function()? getCharacters,
     TResult? Function()? getNextCharacters,
     TResult? Function(CharacterToFilterEntity filter)? getFilteredCharacters,
+    TResult? Function(String value)? searchEvent,
   }) {
     return getNextCharacters?.call();
   }
@@ -259,6 +273,7 @@ class _$GetNextCharactersEventImpl implements GetNextCharactersEvent {
     TResult Function()? getCharacters,
     TResult Function()? getNextCharacters,
     TResult Function(CharacterToFilterEntity filter)? getFilteredCharacters,
+    TResult Function(String value)? searchEvent,
     required TResult orElse(),
   }) {
     if (getNextCharacters != null) {
@@ -274,6 +289,7 @@ class _$GetNextCharactersEventImpl implements GetNextCharactersEvent {
     required TResult Function(GetNextCharactersEvent value) getNextCharacters,
     required TResult Function(GetFilteredCharactersEvent value)
         getFilteredCharacters,
+    required TResult Function(GetSearchedCharactersEvent value) searchEvent,
   }) {
     return getNextCharacters(this);
   }
@@ -284,6 +300,7 @@ class _$GetNextCharactersEventImpl implements GetNextCharactersEvent {
     TResult? Function(GetCharactersEvent value)? getCharacters,
     TResult? Function(GetNextCharactersEvent value)? getNextCharacters,
     TResult? Function(GetFilteredCharactersEvent value)? getFilteredCharacters,
+    TResult? Function(GetSearchedCharactersEvent value)? searchEvent,
   }) {
     return getNextCharacters?.call(this);
   }
@@ -294,6 +311,7 @@ class _$GetNextCharactersEventImpl implements GetNextCharactersEvent {
     TResult Function(GetCharactersEvent value)? getCharacters,
     TResult Function(GetNextCharactersEvent value)? getNextCharacters,
     TResult Function(GetFilteredCharactersEvent value)? getFilteredCharacters,
+    TResult Function(GetSearchedCharactersEvent value)? searchEvent,
     required TResult orElse(),
   }) {
     if (getNextCharacters != null) {
@@ -389,6 +407,7 @@ class _$GetFilteredCharactersEventImpl implements GetFilteredCharactersEvent {
     required TResult Function() getNextCharacters,
     required TResult Function(CharacterToFilterEntity filter)
         getFilteredCharacters,
+    required TResult Function(String value) searchEvent,
   }) {
     return getFilteredCharacters(filter);
   }
@@ -399,6 +418,7 @@ class _$GetFilteredCharactersEventImpl implements GetFilteredCharactersEvent {
     TResult? Function()? getCharacters,
     TResult? Function()? getNextCharacters,
     TResult? Function(CharacterToFilterEntity filter)? getFilteredCharacters,
+    TResult? Function(String value)? searchEvent,
   }) {
     return getFilteredCharacters?.call(filter);
   }
@@ -409,6 +429,7 @@ class _$GetFilteredCharactersEventImpl implements GetFilteredCharactersEvent {
     TResult Function()? getCharacters,
     TResult Function()? getNextCharacters,
     TResult Function(CharacterToFilterEntity filter)? getFilteredCharacters,
+    TResult Function(String value)? searchEvent,
     required TResult orElse(),
   }) {
     if (getFilteredCharacters != null) {
@@ -424,6 +445,7 @@ class _$GetFilteredCharactersEventImpl implements GetFilteredCharactersEvent {
     required TResult Function(GetNextCharactersEvent value) getNextCharacters,
     required TResult Function(GetFilteredCharactersEvent value)
         getFilteredCharacters,
+    required TResult Function(GetSearchedCharactersEvent value) searchEvent,
   }) {
     return getFilteredCharacters(this);
   }
@@ -434,6 +456,7 @@ class _$GetFilteredCharactersEventImpl implements GetFilteredCharactersEvent {
     TResult? Function(GetCharactersEvent value)? getCharacters,
     TResult? Function(GetNextCharactersEvent value)? getNextCharacters,
     TResult? Function(GetFilteredCharactersEvent value)? getFilteredCharacters,
+    TResult? Function(GetSearchedCharactersEvent value)? searchEvent,
   }) {
     return getFilteredCharacters?.call(this);
   }
@@ -444,6 +467,7 @@ class _$GetFilteredCharactersEventImpl implements GetFilteredCharactersEvent {
     TResult Function(GetCharactersEvent value)? getCharacters,
     TResult Function(GetNextCharactersEvent value)? getNextCharacters,
     TResult Function(GetFilteredCharactersEvent value)? getFilteredCharacters,
+    TResult Function(GetSearchedCharactersEvent value)? searchEvent,
     required TResult orElse(),
   }) {
     if (getFilteredCharacters != null) {
@@ -461,6 +485,158 @@ abstract class GetFilteredCharactersEvent implements RemoteCharactersEvent {
   CharacterToFilterEntity get filter;
   @JsonKey(ignore: true)
   _$$GetFilteredCharactersEventImplCopyWith<_$GetFilteredCharactersEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$GetSearchedCharactersEventImplCopyWith<$Res> {
+  factory _$$GetSearchedCharactersEventImplCopyWith(
+          _$GetSearchedCharactersEventImpl value,
+          $Res Function(_$GetSearchedCharactersEventImpl) then) =
+      __$$GetSearchedCharactersEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String value});
+}
+
+/// @nodoc
+class __$$GetSearchedCharactersEventImplCopyWithImpl<$Res>
+    extends _$RemoteCharactersEventCopyWithImpl<$Res,
+        _$GetSearchedCharactersEventImpl>
+    implements _$$GetSearchedCharactersEventImplCopyWith<$Res> {
+  __$$GetSearchedCharactersEventImplCopyWithImpl(
+      _$GetSearchedCharactersEventImpl _value,
+      $Res Function(_$GetSearchedCharactersEventImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? value = null,
+  }) {
+    return _then(_$GetSearchedCharactersEventImpl(
+      value: null == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetSearchedCharactersEventImpl implements GetSearchedCharactersEvent {
+  _$GetSearchedCharactersEventImpl({required this.value});
+
+  @override
+  final String value;
+
+  @override
+  String toString() {
+    return 'RemoteCharactersEvent.searchEvent(value: $value)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetSearchedCharactersEventImpl &&
+            (identical(other.value, value) || other.value == value));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, value);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetSearchedCharactersEventImplCopyWith<_$GetSearchedCharactersEventImpl>
+      get copyWith => __$$GetSearchedCharactersEventImplCopyWithImpl<
+          _$GetSearchedCharactersEventImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getCharacters,
+    required TResult Function() getNextCharacters,
+    required TResult Function(CharacterToFilterEntity filter)
+        getFilteredCharacters,
+    required TResult Function(String value) searchEvent,
+  }) {
+    return searchEvent(value);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getCharacters,
+    TResult? Function()? getNextCharacters,
+    TResult? Function(CharacterToFilterEntity filter)? getFilteredCharacters,
+    TResult? Function(String value)? searchEvent,
+  }) {
+    return searchEvent?.call(value);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getCharacters,
+    TResult Function()? getNextCharacters,
+    TResult Function(CharacterToFilterEntity filter)? getFilteredCharacters,
+    TResult Function(String value)? searchEvent,
+    required TResult orElse(),
+  }) {
+    if (searchEvent != null) {
+      return searchEvent(value);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetCharactersEvent value) getCharacters,
+    required TResult Function(GetNextCharactersEvent value) getNextCharacters,
+    required TResult Function(GetFilteredCharactersEvent value)
+        getFilteredCharacters,
+    required TResult Function(GetSearchedCharactersEvent value) searchEvent,
+  }) {
+    return searchEvent(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetCharactersEvent value)? getCharacters,
+    TResult? Function(GetNextCharactersEvent value)? getNextCharacters,
+    TResult? Function(GetFilteredCharactersEvent value)? getFilteredCharacters,
+    TResult? Function(GetSearchedCharactersEvent value)? searchEvent,
+  }) {
+    return searchEvent?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetCharactersEvent value)? getCharacters,
+    TResult Function(GetNextCharactersEvent value)? getNextCharacters,
+    TResult Function(GetFilteredCharactersEvent value)? getFilteredCharacters,
+    TResult Function(GetSearchedCharactersEvent value)? searchEvent,
+    required TResult orElse(),
+  }) {
+    if (searchEvent != null) {
+      return searchEvent(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetSearchedCharactersEvent implements RemoteCharactersEvent {
+  factory GetSearchedCharactersEvent({required final String value}) =
+      _$GetSearchedCharactersEventImpl;
+
+  String get value;
+  @JsonKey(ignore: true)
+  _$$GetSearchedCharactersEventImplCopyWith<_$GetSearchedCharactersEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -632,8 +808,8 @@ class _$RemoteCharactersStateImpl implements _RemoteCharactersState {
   _$RemoteCharactersStateImpl(
       {this.status = RemoteCharactersStatus.initial,
       this.message = '',
-      this.filter =
-          const CharacterToFilterEntity(gender: '', page: 1, status: ''),
+      this.filter = const CharacterToFilterEntity(
+          gender: '', page: 1, status: '', name: ''),
       this.totalPages = 0,
       this.hasMore = false,
       this.total = 0,

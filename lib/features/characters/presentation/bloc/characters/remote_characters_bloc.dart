@@ -1,3 +1,4 @@
+import 'package:mbank_testy/features/characters/presentation/util/debounce.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:mbank_testy/core/resource/data_state.dart';
@@ -18,12 +19,47 @@ class RemoteCharactersBloc
       : super(RemoteCharactersState(
             filter: const CharacterToFilterEntity(
           gender: '',
+          name: '',
           status: '',
           page: 1,
         ))) {
     on<GetCharactersEvent>(_onGetCharacters);
     on<GetNextCharactersEvent>(_onGetNextCharacters);
     on<GetFilteredCharactersEvent>(_onGetFilteredCharacters);
+    on<GetSearchedCharactersEvent>(
+      _onGetSearchedCharacters,
+      transformer: debounceSequantil(
+        const Duration(milliseconds: 300),
+      ),
+    );
+  }
+
+  void _onGetSearchedCharacters(GetSearchedCharactersEvent event,
+      Emitter<RemoteCharactersState> emit) async {
+    emit(
+      state.copyWith(
+        status: RemoteCharactersStatus.loading,
+        filter: state.filter.copyWith(page: 1, name: event.value),
+      ),
+    );
+
+    final dataState = await _getCharactersUseCase(params: state.filter);
+
+    if (dataState is DataSuccess) {
+      emit(state.copyWith(
+        status: RemoteCharactersStatus.success,
+        hasMore: dataState.data!.pagination.totalPages > state.filter.page,
+        total: dataState.data!.pagination.total,
+        totalPages: dataState.data!.pagination.totalPages,
+        characters: dataState.data!.results,
+      ));
+    }
+
+    if (dataState is DataFailed) {
+      emit(state.copyWith(
+        status: RemoteCharactersStatus.failure,
+      ));
+    }
   }
 
   void _onGetFilteredCharacters(GetFilteredCharactersEvent event,

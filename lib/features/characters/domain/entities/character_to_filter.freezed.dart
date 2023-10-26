@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$CharacterToFilterEntity {
   int get page => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
   String get gender => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
 
@@ -31,7 +32,7 @@ abstract class $CharacterToFilterEntityCopyWith<$Res> {
           $Res Function(CharacterToFilterEntity) then) =
       _$CharacterToFilterEntityCopyWithImpl<$Res, CharacterToFilterEntity>;
   @useResult
-  $Res call({int page, String gender, String status});
+  $Res call({int page, String name, String gender, String status});
 }
 
 /// @nodoc
@@ -49,6 +50,7 @@ class _$CharacterToFilterEntityCopyWithImpl<$Res,
   @override
   $Res call({
     Object? page = null,
+    Object? name = null,
     Object? gender = null,
     Object? status = null,
   }) {
@@ -57,6 +59,10 @@ class _$CharacterToFilterEntityCopyWithImpl<$Res,
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
               as int,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
       gender: null == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
@@ -78,7 +84,7 @@ abstract class _$$CharacterToFilterEntityImplCopyWith<$Res>
       __$$CharacterToFilterEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int page, String gender, String status});
+  $Res call({int page, String name, String gender, String status});
 }
 
 /// @nodoc
@@ -95,6 +101,7 @@ class __$$CharacterToFilterEntityImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? page = null,
+    Object? name = null,
     Object? gender = null,
     Object? status = null,
   }) {
@@ -103,6 +110,10 @@ class __$$CharacterToFilterEntityImplCopyWithImpl<$Res>
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
               as int,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
       gender: null == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
@@ -119,10 +130,15 @@ class __$$CharacterToFilterEntityImplCopyWithImpl<$Res>
 
 class _$CharacterToFilterEntityImpl implements _CharacterToFilterEntity {
   const _$CharacterToFilterEntityImpl(
-      {required this.page, required this.gender, required this.status});
+      {required this.page,
+      required this.name,
+      required this.gender,
+      required this.status});
 
   @override
   final int page;
+  @override
+  final String name;
   @override
   final String gender;
   @override
@@ -130,7 +146,7 @@ class _$CharacterToFilterEntityImpl implements _CharacterToFilterEntity {
 
   @override
   String toString() {
-    return 'CharacterToFilterEntity(page: $page, gender: $gender, status: $status)';
+    return 'CharacterToFilterEntity(page: $page, name: $name, gender: $gender, status: $status)';
   }
 
   @override
@@ -139,12 +155,13 @@ class _$CharacterToFilterEntityImpl implements _CharacterToFilterEntity {
         (other.runtimeType == runtimeType &&
             other is _$CharacterToFilterEntityImpl &&
             (identical(other.page, page) || other.page == page) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.gender, gender) || other.gender == gender) &&
             (identical(other.status, status) || other.status == status));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, page, gender, status);
+  int get hashCode => Object.hash(runtimeType, page, name, gender, status);
 
   @JsonKey(ignore: true)
   @override
@@ -157,11 +174,14 @@ class _$CharacterToFilterEntityImpl implements _CharacterToFilterEntity {
 abstract class _CharacterToFilterEntity implements CharacterToFilterEntity {
   const factory _CharacterToFilterEntity(
       {required final int page,
+      required final String name,
       required final String gender,
       required final String status}) = _$CharacterToFilterEntityImpl;
 
   @override
   int get page;
+  @override
+  String get name;
   @override
   String get gender;
   @override

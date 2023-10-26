@@ -9,6 +9,7 @@ import 'package:mbank_testy/features/characters/presentation/bloc/characters/rem
 import 'package:mbank_testy/features/characters/presentation/pages/detail/character_detail.dart';
 import 'package:mbank_testy/features/characters/presentation/widgets/character_filter.dart';
 import 'package:material_dialogs/material_dialogs.dart';
+import 'package:mbank_testy/features/characters/presentation/widgets/character_search.dart';
 import 'package:mbank_testy/features/characters/presentation/widgets/character_tile.dart';
 
 class Characters extends StatefulWidget {
@@ -53,11 +54,23 @@ class _CharactersState extends State<Characters> {
     context.read<RemoteCharactersBloc>().add(GetNextCharactersEvent());
   }
 
+  void fetchSearch(String value) {
+    context
+        .read<RemoteCharactersBloc>()
+        .add(RemoteCharactersEvent.searchEvent(value: value));
+  }
+
   _buildBody() {
     return BlocBuilder<RemoteCharactersBloc, RemoteCharactersState>(
       builder: (context, state) {
         return Column(
           children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 16),
+              child: CharacterSearch(
+                onChanged: fetchSearch,
+              ),
+            ),
             if (state.status.isLoading)
               const Expanded(child: AppLoader())
             else if (state.status.isFailure)

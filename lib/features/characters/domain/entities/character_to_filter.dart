@@ -6,6 +6,7 @@ part 'character_to_filter.freezed.dart';
 class CharacterToFilterEntity with _$CharacterToFilterEntity {
   const factory CharacterToFilterEntity({
     required int page,
+    required String name,
     required String gender,
     required String status,
   }) = _CharacterToFilterEntity;
