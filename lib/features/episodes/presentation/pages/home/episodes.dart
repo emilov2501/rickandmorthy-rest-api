@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/instance_manager.dart';
-
-import 'package:get/route_manager.dart' as GetRoute;
+import  'package:get/route_manager.dart' as get_route;
 import 'package:mbank_testy/core/widgets/app_failure.dart';
 import 'package:mbank_testy/core/widgets/app_infinity_scroll.dart';
 import 'package:mbank_testy/core/widgets/app_loader.dart';
@@ -89,9 +87,9 @@ class _EpisodesState extends State<Episodes> {
   }
 
   _onEpisodePressed(BuildContext context, EpisodeEntity episode) =>
-      GetRoute.Get.to(
+      get_route.Get.to(
         duration: const Duration(milliseconds: 200),
-        transition: GetRoute.Transition.fade,
+        transition: get_route.Transition.fade,
         () => EpisodeDetail(episode: episode),
       );
 }

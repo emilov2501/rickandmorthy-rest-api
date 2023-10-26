@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mbank_testy/features/episodes/presentation/pages/home/episodes.dart';
 import 'package:mbank_testy/features/characters/presentation/pages/home/characters.dart'
-    as CharactersScreen;
+    as character_screen;
 
 class MainLayout extends StatefulWidget {
   const MainLayout({super.key});
@@ -14,7 +14,7 @@ class _MainLayoutState extends State<MainLayout> {
   int currentIndex = 0;
 
   final screens = [
-    const CharactersScreen.Characters(),
+    const character_screen.Characters(),
     const Episodes(),
   ];
 
