@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 class CharacterSearch extends StatefulWidget {
   final Function(String v) onChanged;
+  final String value;
 
-  const CharacterSearch({super.key, required this.onChanged});
+  const CharacterSearch(
+      {super.key, required this.onChanged, required this.value});
 
   @override
   State<CharacterSearch> createState() => _CharacterSearchState();
@@ -14,7 +16,9 @@ class _CharacterSearchState extends State<CharacterSearch> {
 
   @override
   void initState() {
-    _textEditingController = TextEditingController();
+    _textEditingController = TextEditingController(
+      text: widget.value,
+    );
     super.initState();
   }
 

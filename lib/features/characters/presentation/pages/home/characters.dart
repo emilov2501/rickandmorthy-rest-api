@@ -68,6 +68,7 @@ class _CharactersState extends State<Characters> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 16),
               child: CharacterSearch(
+                value: context.read<RemoteCharactersBloc>().state.filter.name,
                 onChanged: fetchSearch,
               ),
             ),

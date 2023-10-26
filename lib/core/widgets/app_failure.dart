@@ -6,7 +6,7 @@ class AppFailure extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Center(
-      child: Icon(Icons.refresh),
+      child: Icon(Icons.refresh_sharp, color: Colors.white,),
     );
   }
 }
