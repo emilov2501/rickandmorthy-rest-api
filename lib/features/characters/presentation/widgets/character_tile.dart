@@ -112,5 +112,5 @@ class _CharacterWidgetState extends State<CharacterWidget> {
 
   Widget _error(context, url, error) => const Icon(Icons.error);
 
-  Widget _loader(context, url) => const CircularProgressIndicator.adaptive();
+  Widget _loader(context, url) => Image.asset('assets/no-image.jpeg');
 }
