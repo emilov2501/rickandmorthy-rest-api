@@ -53,14 +53,14 @@ class CharacterWidget extends StatelessWidget {
                 ),
                 Text(
                   'Gender: ${character.gender.name.capitalize()}',
-                  style: Theme.of(context).textTheme.bodyMedium,
+                  style: Theme.of(context).textTheme.bodySmall,
                 ),
                 const SizedBox(
                   height: 20,
                 ),
                 Text(
                   'Status: ${character.status.name.capitalize()}',
-                  style: Theme.of(context).textTheme.bodyMedium,
+                  style: Theme.of(context).textTheme.bodySmall,
                 )
               ],
             ),

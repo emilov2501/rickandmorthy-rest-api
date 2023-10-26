@@ -6,14 +6,17 @@ ThemeData theme(context) {
       fontFamily: GoogleFonts.pressStart2p().fontFamily,
       textTheme: const TextTheme(
         bodyLarge: TextStyle(
-          color: Colors.white,
-          fontSize: 16,
-          fontWeight: FontWeight.w600,
-          letterSpacing: 1
-        ),
+            color: Colors.white,
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+            letterSpacing: 1),
         bodyMedium: TextStyle(
           color: Colors.white,
           letterSpacing: 1,
+          fontSize: 12,
+        ),
+        bodySmall: TextStyle(
+          color: Colors.white,
           fontSize: 10,
         ),
       ),
