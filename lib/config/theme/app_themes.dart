@@ -6,10 +6,11 @@ ThemeData theme(context) {
       fontFamily: GoogleFonts.pressStart2p().fontFamily,
       textTheme: const TextTheme(
         bodyLarge: TextStyle(
-            color: Colors.white,
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-            letterSpacing: 1),
+          color: Colors.white,
+          fontSize: 16,
+          fontWeight: FontWeight.w600,
+          letterSpacing: 1,
+        ),
         bodyMedium: TextStyle(
           color: Colors.white,
           letterSpacing: 1,
@@ -18,6 +19,14 @@ ThemeData theme(context) {
         bodySmall: TextStyle(
           color: Colors.white,
           fontSize: 10,
+        ),
+        labelSmall: TextStyle(
+          color: Colors.black,
+          fontSize: 12,
+        ),
+        titleSmall: TextStyle(
+          color: Colors.white38,
+          fontSize: 12,
         ),
       ),
       scaffoldBackgroundColor: const Color(0xff212121),

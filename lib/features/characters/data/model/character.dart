@@ -23,6 +23,7 @@ class CharacterModel extends CharacterEntity with _$CharacterModel {
 @freezed
 class CharacterPaginationModel extends CharacterPaginationEntity
     with _$CharacterPaginationModel {
+      
   const factory CharacterPaginationModel({
     @JsonKey(name: 'count') required int total,
     @JsonKey(name: 'pages') required int totalPages,

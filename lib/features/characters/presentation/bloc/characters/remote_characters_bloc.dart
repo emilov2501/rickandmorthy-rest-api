@@ -16,42 +16,77 @@ class RemoteCharactersBloc
 
   RemoteCharactersBloc(this._getCharactersUseCase)
       : super(RemoteCharactersState(
-          page: 2,
-        )) {
+            filter: const CharacterToFilterEntity(
+          gender: '',
+          status: '',
+          page: 1,
+        ))) {
     on<GetCharactersEvent>(_onGetCharacters);
     on<GetNextCharactersEvent>(_onGetNextCharacters);
+    on<GetFilteredCharactersEvent>(_onGetFilteredCharacters);
   }
 
-  void _onGetNextCharacters(
-      GetNextCharactersEvent event, Emitter<RemoteCharactersState> emit) async {
-    emit(state.copyWith(status: RemoteCharactersStatus.next));
+  void _onGetFilteredCharacters(GetFilteredCharactersEvent event,
+      Emitter<RemoteCharactersState> emit) async {
+    emit(
+      state.copyWith(
+        status: RemoteCharactersStatus.loading,
+        filter: event.filter.copyWith(page: 1),
+      ),
+    );
 
-    final dataState = await _getCharactersUseCase(
-        params: CharacterToFilterEntity(page: state.page));
+    final dataState = await _getCharactersUseCase(params: state.filter);
 
     if (dataState is DataSuccess) {
-      if (dataState.data!.pagination.totalPages >= state.page) {
-        emit(state.copyWith(
-          characters:
-              state.characters.followedBy(dataState.data!.results).toList(),
-          page: state.page + 1,
-          hasMore: true,
-          status: RemoteCharactersStatus.success,
-        ));
-      } else {
-        emit(state.copyWith(
-          hasMore: false,
-          status: RemoteCharactersStatus.success,
-        ));
-      }
+      emit(state.copyWith(
+        status: RemoteCharactersStatus.success,
+        hasMore: dataState.data!.pagination.totalPages > state.filter.page,
+        total: dataState.data!.pagination.total,
+        totalPages: dataState.data!.pagination.totalPages,
+        characters: dataState.data!.results,
+      ));
     }
 
     if (dataState is DataFailed) {
       emit(state.copyWith(
         status: RemoteCharactersStatus.failure,
-        hasMore: false,
-        message: '${dataState.error}',
       ));
+    }
+  }
+
+  void _onGetNextCharacters(
+      GetNextCharactersEvent event, Emitter<RemoteCharactersState> emit) async {
+    if (state.hasMore) {
+      emit(
+        state.copyWith(
+          status: RemoteCharactersStatus.next,
+        ),
+      );
+
+      final dataState = await _getCharactersUseCase(
+        params: state.filter.copyWith(
+          page: state.filter.page + 1,
+        ),
+      );
+
+      if (dataState is DataSuccess) {
+        emit(
+          state.copyWith(
+            characters:
+                state.characters.followedBy(dataState.data!.results).toList(),
+            hasMore: dataState.data!.pagination.totalPages > state.filter.page,
+            status: RemoteCharactersStatus.success,
+          ),
+        );
+      }
+
+      if (dataState is DataFailed) {
+        emit(state.copyWith(
+          status: RemoteCharactersStatus.failure,
+          hasMore: false,
+          message: '${dataState.error}',
+        ));
+      }
     }
   }
 
@@ -64,7 +99,7 @@ class RemoteCharactersBloc
     if (dataState is DataSuccess && dataState.data!.results.isNotEmpty) {
       emit(state.copyWith(
         characters: dataState.data!.results,
-        hasMore: dataState.data!.pagination.totalPages >= state.page,
+        hasMore: dataState.data!.pagination.totalPages > state.filter.page,
         total: dataState.data!.pagination.total,
         totalPages: dataState.data!.pagination.totalPages,
         status: RemoteCharactersStatus.success,

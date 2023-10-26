@@ -12,6 +12,8 @@ abstract class CharacterApiService {
   @GET('/character')
   Future<HttpResponse<CharacterBaseModel>> getCharacters({
     @Query('page') int? page,
+    @Query('gender') String? gender,
+    @Query('status') String? status,
   });
 
   @GET('/character/{id}')

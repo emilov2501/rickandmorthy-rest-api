@@ -19,7 +19,8 @@ class RemoteCharactersState with _$RemoteCharactersState {
   factory RemoteCharactersState({
     @Default(RemoteCharactersStatus.initial) RemoteCharactersStatus status,
     @Default('') String message,
-    @Default(1) int page,
+    @Default(CharacterToFilterEntity(gender: '', page: 1, status: ''))
+    CharacterToFilterEntity filter,
     @Default(0) totalPages,
     @Default(false) hasMore,
     @Default(0) total,

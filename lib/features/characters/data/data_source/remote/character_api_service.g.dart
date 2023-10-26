@@ -21,9 +21,17 @@ class _CharacterApiService implements CharacterApiService {
   String? baseUrl;
 
   @override
-  Future<HttpResponse<CharacterBaseModel>> getCharacters({int? page}) async {
+  Future<HttpResponse<CharacterBaseModel>> getCharacters({
+    int? page,
+    String? gender,
+    String? status,
+  }) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'page': page};
+    final queryParameters = <String, dynamic>{
+      r'page': page,
+      r'gender': gender,
+      r'status': status,
+    };
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;

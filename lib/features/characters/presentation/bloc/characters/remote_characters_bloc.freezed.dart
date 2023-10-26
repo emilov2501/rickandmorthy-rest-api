@@ -20,18 +20,22 @@ mixin _$RemoteCharactersEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() getCharacters,
     required TResult Function() getNextCharacters,
+    required TResult Function(CharacterToFilterEntity filter)
+        getFilteredCharacters,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getCharacters,
     TResult? Function()? getNextCharacters,
+    TResult? Function(CharacterToFilterEntity filter)? getFilteredCharacters,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getCharacters,
     TResult Function()? getNextCharacters,
+    TResult Function(CharacterToFilterEntity filter)? getFilteredCharacters,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +43,22 @@ mixin _$RemoteCharactersEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(GetCharactersEvent value) getCharacters,
     required TResult Function(GetNextCharactersEvent value) getNextCharacters,
+    required TResult Function(GetFilteredCharactersEvent value)
+        getFilteredCharacters,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(GetCharactersEvent value)? getCharacters,
     TResult? Function(GetNextCharactersEvent value)? getNextCharacters,
+    TResult? Function(GetFilteredCharactersEvent value)? getFilteredCharacters,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GetCharactersEvent value)? getCharacters,
     TResult Function(GetNextCharactersEvent value)? getNextCharacters,
+    TResult Function(GetFilteredCharactersEvent value)? getFilteredCharacters,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -115,6 +123,8 @@ class _$GetCharactersEventImpl implements GetCharactersEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() getCharacters,
     required TResult Function() getNextCharacters,
+    required TResult Function(CharacterToFilterEntity filter)
+        getFilteredCharacters,
   }) {
     return getCharacters();
   }
@@ -124,6 +134,7 @@ class _$GetCharactersEventImpl implements GetCharactersEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getCharacters,
     TResult? Function()? getNextCharacters,
+    TResult? Function(CharacterToFilterEntity filter)? getFilteredCharacters,
   }) {
     return getCharacters?.call();
   }
@@ -133,6 +144,7 @@ class _$GetCharactersEventImpl implements GetCharactersEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getCharacters,
     TResult Function()? getNextCharacters,
+    TResult Function(CharacterToFilterEntity filter)? getFilteredCharacters,
     required TResult orElse(),
   }) {
     if (getCharacters != null) {
@@ -146,6 +158,8 @@ class _$GetCharactersEventImpl implements GetCharactersEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(GetCharactersEvent value) getCharacters,
     required TResult Function(GetNextCharactersEvent value) getNextCharacters,
+    required TResult Function(GetFilteredCharactersEvent value)
+        getFilteredCharacters,
   }) {
     return getCharacters(this);
   }
@@ -155,6 +169,7 @@ class _$GetCharactersEventImpl implements GetCharactersEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(GetCharactersEvent value)? getCharacters,
     TResult? Function(GetNextCharactersEvent value)? getNextCharacters,
+    TResult? Function(GetFilteredCharactersEvent value)? getFilteredCharacters,
   }) {
     return getCharacters?.call(this);
   }
@@ -164,6 +179,7 @@ class _$GetCharactersEventImpl implements GetCharactersEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GetCharactersEvent value)? getCharacters,
     TResult Function(GetNextCharactersEvent value)? getNextCharacters,
+    TResult Function(GetFilteredCharactersEvent value)? getFilteredCharacters,
     required TResult orElse(),
   }) {
     if (getCharacters != null) {
@@ -221,6 +237,8 @@ class _$GetNextCharactersEventImpl implements GetNextCharactersEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() getCharacters,
     required TResult Function() getNextCharacters,
+    required TResult Function(CharacterToFilterEntity filter)
+        getFilteredCharacters,
   }) {
     return getNextCharacters();
   }
@@ -230,6 +248,7 @@ class _$GetNextCharactersEventImpl implements GetNextCharactersEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getCharacters,
     TResult? Function()? getNextCharacters,
+    TResult? Function(CharacterToFilterEntity filter)? getFilteredCharacters,
   }) {
     return getNextCharacters?.call();
   }
@@ -239,6 +258,7 @@ class _$GetNextCharactersEventImpl implements GetNextCharactersEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getCharacters,
     TResult Function()? getNextCharacters,
+    TResult Function(CharacterToFilterEntity filter)? getFilteredCharacters,
     required TResult orElse(),
   }) {
     if (getNextCharacters != null) {
@@ -252,6 +272,8 @@ class _$GetNextCharactersEventImpl implements GetNextCharactersEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(GetCharactersEvent value) getCharacters,
     required TResult Function(GetNextCharactersEvent value) getNextCharacters,
+    required TResult Function(GetFilteredCharactersEvent value)
+        getFilteredCharacters,
   }) {
     return getNextCharacters(this);
   }
@@ -261,6 +283,7 @@ class _$GetNextCharactersEventImpl implements GetNextCharactersEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(GetCharactersEvent value)? getCharacters,
     TResult? Function(GetNextCharactersEvent value)? getNextCharacters,
+    TResult? Function(GetFilteredCharactersEvent value)? getFilteredCharacters,
   }) {
     return getNextCharacters?.call(this);
   }
@@ -270,6 +293,7 @@ class _$GetNextCharactersEventImpl implements GetNextCharactersEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GetCharactersEvent value)? getCharacters,
     TResult Function(GetNextCharactersEvent value)? getNextCharacters,
+    TResult Function(GetFilteredCharactersEvent value)? getFilteredCharacters,
     required TResult orElse(),
   }) {
     if (getNextCharacters != null) {
@@ -284,10 +308,167 @@ abstract class GetNextCharactersEvent implements RemoteCharactersEvent {
 }
 
 /// @nodoc
+abstract class _$$GetFilteredCharactersEventImplCopyWith<$Res> {
+  factory _$$GetFilteredCharactersEventImplCopyWith(
+          _$GetFilteredCharactersEventImpl value,
+          $Res Function(_$GetFilteredCharactersEventImpl) then) =
+      __$$GetFilteredCharactersEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({CharacterToFilterEntity filter});
+
+  $CharacterToFilterEntityCopyWith<$Res> get filter;
+}
+
+/// @nodoc
+class __$$GetFilteredCharactersEventImplCopyWithImpl<$Res>
+    extends _$RemoteCharactersEventCopyWithImpl<$Res,
+        _$GetFilteredCharactersEventImpl>
+    implements _$$GetFilteredCharactersEventImplCopyWith<$Res> {
+  __$$GetFilteredCharactersEventImplCopyWithImpl(
+      _$GetFilteredCharactersEventImpl _value,
+      $Res Function(_$GetFilteredCharactersEventImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? filter = null,
+  }) {
+    return _then(_$GetFilteredCharactersEventImpl(
+      filter: null == filter
+          ? _value.filter
+          : filter // ignore: cast_nullable_to_non_nullable
+              as CharacterToFilterEntity,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CharacterToFilterEntityCopyWith<$Res> get filter {
+    return $CharacterToFilterEntityCopyWith<$Res>(_value.filter, (value) {
+      return _then(_value.copyWith(filter: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$GetFilteredCharactersEventImpl implements GetFilteredCharactersEvent {
+  _$GetFilteredCharactersEventImpl({required this.filter});
+
+  @override
+  final CharacterToFilterEntity filter;
+
+  @override
+  String toString() {
+    return 'RemoteCharactersEvent.getFilteredCharacters(filter: $filter)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetFilteredCharactersEventImpl &&
+            (identical(other.filter, filter) || other.filter == filter));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, filter);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetFilteredCharactersEventImplCopyWith<_$GetFilteredCharactersEventImpl>
+      get copyWith => __$$GetFilteredCharactersEventImplCopyWithImpl<
+          _$GetFilteredCharactersEventImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getCharacters,
+    required TResult Function() getNextCharacters,
+    required TResult Function(CharacterToFilterEntity filter)
+        getFilteredCharacters,
+  }) {
+    return getFilteredCharacters(filter);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getCharacters,
+    TResult? Function()? getNextCharacters,
+    TResult? Function(CharacterToFilterEntity filter)? getFilteredCharacters,
+  }) {
+    return getFilteredCharacters?.call(filter);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getCharacters,
+    TResult Function()? getNextCharacters,
+    TResult Function(CharacterToFilterEntity filter)? getFilteredCharacters,
+    required TResult orElse(),
+  }) {
+    if (getFilteredCharacters != null) {
+      return getFilteredCharacters(filter);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetCharactersEvent value) getCharacters,
+    required TResult Function(GetNextCharactersEvent value) getNextCharacters,
+    required TResult Function(GetFilteredCharactersEvent value)
+        getFilteredCharacters,
+  }) {
+    return getFilteredCharacters(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetCharactersEvent value)? getCharacters,
+    TResult? Function(GetNextCharactersEvent value)? getNextCharacters,
+    TResult? Function(GetFilteredCharactersEvent value)? getFilteredCharacters,
+  }) {
+    return getFilteredCharacters?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetCharactersEvent value)? getCharacters,
+    TResult Function(GetNextCharactersEvent value)? getNextCharacters,
+    TResult Function(GetFilteredCharactersEvent value)? getFilteredCharacters,
+    required TResult orElse(),
+  }) {
+    if (getFilteredCharacters != null) {
+      return getFilteredCharacters(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetFilteredCharactersEvent implements RemoteCharactersEvent {
+  factory GetFilteredCharactersEvent(
+          {required final CharacterToFilterEntity filter}) =
+      _$GetFilteredCharactersEventImpl;
+
+  CharacterToFilterEntity get filter;
+  @JsonKey(ignore: true)
+  _$$GetFilteredCharactersEventImplCopyWith<_$GetFilteredCharactersEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$RemoteCharactersState {
   RemoteCharactersStatus get status => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
-  int get page => throw _privateConstructorUsedError;
+  CharacterToFilterEntity get filter => throw _privateConstructorUsedError;
   dynamic get totalPages => throw _privateConstructorUsedError;
   dynamic get hasMore => throw _privateConstructorUsedError;
   dynamic get total => throw _privateConstructorUsedError;
@@ -307,11 +488,13 @@ abstract class $RemoteCharactersStateCopyWith<$Res> {
   $Res call(
       {RemoteCharactersStatus status,
       String message,
-      int page,
+      CharacterToFilterEntity filter,
       dynamic totalPages,
       dynamic hasMore,
       dynamic total,
       List<CharacterEntity> characters});
+
+  $CharacterToFilterEntityCopyWith<$Res> get filter;
 }
 
 /// @nodoc
@@ -330,7 +513,7 @@ class _$RemoteCharactersStateCopyWithImpl<$Res,
   $Res call({
     Object? status = null,
     Object? message = null,
-    Object? page = null,
+    Object? filter = null,
     Object? totalPages = freezed,
     Object? hasMore = freezed,
     Object? total = freezed,
@@ -345,10 +528,10 @@ class _$RemoteCharactersStateCopyWithImpl<$Res,
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      page: null == page
-          ? _value.page
-          : page // ignore: cast_nullable_to_non_nullable
-              as int,
+      filter: null == filter
+          ? _value.filter
+          : filter // ignore: cast_nullable_to_non_nullable
+              as CharacterToFilterEntity,
       totalPages: freezed == totalPages
           ? _value.totalPages
           : totalPages // ignore: cast_nullable_to_non_nullable
@@ -367,6 +550,14 @@ class _$RemoteCharactersStateCopyWithImpl<$Res,
               as List<CharacterEntity>,
     ) as $Val);
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CharacterToFilterEntityCopyWith<$Res> get filter {
+    return $CharacterToFilterEntityCopyWith<$Res>(_value.filter, (value) {
+      return _then(_value.copyWith(filter: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -381,11 +572,14 @@ abstract class _$$RemoteCharactersStateImplCopyWith<$Res>
   $Res call(
       {RemoteCharactersStatus status,
       String message,
-      int page,
+      CharacterToFilterEntity filter,
       dynamic totalPages,
       dynamic hasMore,
       dynamic total,
       List<CharacterEntity> characters});
+
+  @override
+  $CharacterToFilterEntityCopyWith<$Res> get filter;
 }
 
 /// @nodoc
@@ -402,7 +596,7 @@ class __$$RemoteCharactersStateImplCopyWithImpl<$Res>
   $Res call({
     Object? status = null,
     Object? message = null,
-    Object? page = null,
+    Object? filter = null,
     Object? totalPages = freezed,
     Object? hasMore = freezed,
     Object? total = freezed,
@@ -417,10 +611,10 @@ class __$$RemoteCharactersStateImplCopyWithImpl<$Res>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      page: null == page
-          ? _value.page
-          : page // ignore: cast_nullable_to_non_nullable
-              as int,
+      filter: null == filter
+          ? _value.filter
+          : filter // ignore: cast_nullable_to_non_nullable
+              as CharacterToFilterEntity,
       totalPages: freezed == totalPages ? _value.totalPages! : totalPages,
       hasMore: freezed == hasMore ? _value.hasMore! : hasMore,
       total: freezed == total ? _value.total! : total,
@@ -438,7 +632,8 @@ class _$RemoteCharactersStateImpl implements _RemoteCharactersState {
   _$RemoteCharactersStateImpl(
       {this.status = RemoteCharactersStatus.initial,
       this.message = '',
-      this.page = 1,
+      this.filter =
+          const CharacterToFilterEntity(gender: '', page: 1, status: ''),
       this.totalPages = 0,
       this.hasMore = false,
       this.total = 0,
@@ -453,7 +648,7 @@ class _$RemoteCharactersStateImpl implements _RemoteCharactersState {
   final String message;
   @override
   @JsonKey()
-  final int page;
+  final CharacterToFilterEntity filter;
   @override
   @JsonKey()
   final dynamic totalPages;
@@ -474,7 +669,7 @@ class _$RemoteCharactersStateImpl implements _RemoteCharactersState {
 
   @override
   String toString() {
-    return 'RemoteCharactersState(status: $status, message: $message, page: $page, totalPages: $totalPages, hasMore: $hasMore, total: $total, characters: $characters)';
+    return 'RemoteCharactersState(status: $status, message: $message, filter: $filter, totalPages: $totalPages, hasMore: $hasMore, total: $total, characters: $characters)';
   }
 
   @override
@@ -484,7 +679,7 @@ class _$RemoteCharactersStateImpl implements _RemoteCharactersState {
             other is _$RemoteCharactersStateImpl &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.message, message) || other.message == message) &&
-            (identical(other.page, page) || other.page == page) &&
+            (identical(other.filter, filter) || other.filter == filter) &&
             const DeepCollectionEquality()
                 .equals(other.totalPages, totalPages) &&
             const DeepCollectionEquality().equals(other.hasMore, hasMore) &&
@@ -498,7 +693,7 @@ class _$RemoteCharactersStateImpl implements _RemoteCharactersState {
       runtimeType,
       status,
       message,
-      page,
+      filter,
       const DeepCollectionEquality().hash(totalPages),
       const DeepCollectionEquality().hash(hasMore),
       const DeepCollectionEquality().hash(total),
@@ -516,7 +711,7 @@ abstract class _RemoteCharactersState implements RemoteCharactersState {
   factory _RemoteCharactersState(
       {final RemoteCharactersStatus status,
       final String message,
-      final int page,
+      final CharacterToFilterEntity filter,
       final dynamic totalPages,
       final dynamic hasMore,
       final dynamic total,
@@ -527,7 +722,7 @@ abstract class _RemoteCharactersState implements RemoteCharactersState {
   @override
   String get message;
   @override
-  int get page;
+  CharacterToFilterEntity get filter;
   @override
   dynamic get totalPages;
   @override
